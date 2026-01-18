@@ -7,7 +7,11 @@
     <link rel="stylesheet" href="{{asset ('css/frontpage.css')}}">
 </head>
 <body>
-    <h2>test</h2>
-    
+    <div class="dashboard">
+        <div class="hero">
+            <img src="{{asset ('images/asean-logo.png')}}" alt="logo" class="logo">
+            <a href="/asean-2026/dashboard"><button class="okButton">GET STARTED</button></a>
+        </div>
+    </div>
 </body>
 </html>

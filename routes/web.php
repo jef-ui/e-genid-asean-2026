@@ -10,3 +10,7 @@ Route::get('/', function () {
 Route::get('/asean-2026', function () {
     return view ('aseanims.index');
 });
+
+Route::get('/asean-2026/dashboard', function () {
+    return view ('aseanims.dashboard');
+});

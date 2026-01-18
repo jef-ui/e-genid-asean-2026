@@ -34,36 +34,9 @@ body:before {
     font-family: 'Montserat',sans-serif;
     display: flex;
     width: 100%;
-    align-items: center;
-    justify-content: center;
 }
 
-.hero {
-    height: 100vh;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
+.header img {
+    height: 100px;
 }
-
-.hero img {
-    height: 400px;
-}
-
-.okButton {
-    border: none;
-    padding: 15px 30px;
-    font-size: 14px;
-    background-color: #0038A8;
-    color: whitesmoke;
-    border-radius: 20px;
-    box-shadow: 0 4px 8px rgba(0,0,0,0.5);
-    font-weight: bold;
-    transition: transform 0.3s ease;
-}
-
-.okButton:hover {
-    transform: scale(1.07);
-}
-
 
