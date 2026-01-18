@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>e-ID Enrollment</title>
     <link rel="stylesheet" href="{{asset ('css/dashboard.css')}}">
 </head>
 <body>
@@ -15,7 +15,15 @@
             </div>
         </div>
 
-        <button class="createButton">Create ID</button>
+        <div class="container-title">
+            <p class="ptitle">ENROLLED STGEPR E-IDs</p>
+            <div class="phtime">
+                <img src="{{asset ('images/phflag.png')}}" alt="flag" class="phflag">
+                <span id="phDate"></span>
+            </div>
+        </div>
+
+    <a href="/asean-2026/dashboard/enrolled-stgepr-e-ids/e-id-enrollment-form"><button class="createButton">Enroll STGEPR e-ID</button></a>
 
     <div class="main-container">
       <div class="main">
@@ -47,9 +55,7 @@
         </div>
       </div>
     </div>
-
-
     </div>
-    
+<script src="{{asset ('js/livedate.js')}}"></script>
 </body>
 </html>

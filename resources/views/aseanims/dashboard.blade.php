@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Dashboard</title>
     <link rel="stylesheet" href="{{asset ('css/dashboard.css')}}">
 </head>
 <body>
@@ -27,7 +27,7 @@
             <div class="container-grid">
 
                 {{-- no. of stgepr --}}
-                <a href="/asean-2026/dashboard/e-id-generated"><div class="card" style="grid-area: card-1">
+                <a href="/asean-2026/dashboard/enrolled-stgepr-e-ids"><div class="card" style="grid-area: card-1">
                     
                 <img src="{{asset ('icons/users-three.svg')}}" alt="icon" class="icon">
 
