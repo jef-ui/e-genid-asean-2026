@@ -14,3 +14,7 @@ Route::get('/asean-2026', function () {
 Route::get('/asean-2026/dashboard', function () {
     return view ('aseanims.dashboard');
 });
+
+Route::get('/asean-2026/dashboard/e-id-generated', function () {
+    return view ('aseanims.generatedid');
+});
