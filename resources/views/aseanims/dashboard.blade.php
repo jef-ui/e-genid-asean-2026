@@ -17,7 +17,11 @@
         <div class="container-main">
 
             <div class="container-title">
-                <p>DASHBOARD</p>
+                <p class="ptitle">DASHBOARD</p>
+                    <div class="phtime">
+                    <img src="{{asset ('images/phflag.png')}}" alt="flag" class="phflag">
+                    <span id="phDate"></span>
+                    </div>
             </div>
 
             <div class="container-grid">
@@ -29,7 +33,7 @@
 
                 <div class="cardcontent">
                     <h2 class="h4">40</h2>
-                    <p class="content">NO. OF STGEPR</p>
+                    <p class="content">NO. OF STGEPR<br/> Members</p>
                 </div>
 
                 </div></a>
@@ -39,19 +43,41 @@
                 <img src="{{asset ('icons/users-four.svg')}}" alt="icon" class="icon">
 
                 <div class="cardcontent">
-                    <h2 class="h4">40</h2>
-                    <p class="content">NO. OF IMT</p>
+                    <h2 class="h4">10</h2>
+                    <p class="content">NO. OF IMT<br/> Members</p>
+                </div>
+
+                </div></a>
+                {{-- total no. of personnel --}}
+                <a href="#"><div class="card" style="grid-area: card-3">
+                    
+                <img src="{{asset ('icons/users-four.svg')}}" alt="icon" class="icon">
+
+                <div class="cardcontent">
+                    <h2 class="h4">10</h2>
+                    <p class="content">Total Members</p>
                 </div>
 
                 </div></a>
 
-    
-                <div class="card" style="grid-area: card-3"></div>
-                <div class="card" style="grid-area: card-4"></div>
+                {{-- Contact Directories --}}
+                <a href="#"><div class="card" style="grid-area: card-4">
+                    
+                <img src="{{asset ('icons/addressbook.svg')}}" alt="icon" class="icon">
+
+                <div class="cardcontent">
+                    <h2 class="h4" style="font-size:40px">Contact</h2>
+                    <p class="content">Directories</p>
+                </div>
+
+                </div></a>
+
+            
                 <div class="card" style="grid-area: card-5"></div>
                 <div class="card" style="grid-area: card-6"></div>
             </div>
         </div>
     </div>
 </body>
+<script src="{{asset ('js/livedate.js')}}"></script>
 </html>

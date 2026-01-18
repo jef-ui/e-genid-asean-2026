@@ -35,7 +35,26 @@ body:before {
     flex-direction: column;
     max-width: 1320px;     
     margin: 0 auto;       
-    padding: 20px 24px;   
+    padding: 15px 24px;   
+    gap: 20px;
+}
+
+.dashboard img {
+    height: 20px;
+}
+
+.phtime {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+}
+
+
+span#phDate{
+    color: whitesmoke;
+    padding-right: 20px;
+    font-weight: bold;
 }
 
 
@@ -57,19 +76,32 @@ body:before {
 
 .container-main {
     width: 100%;
+    display: flex;
+    gap: 20px;
+    flex-direction: column;
 }
 
 .container-title {
-    background-color: #0038A8;
+    background: linear-gradient(
+        to right,
+        #0038A8,
+        #1A5ED8
+    );
     border-radius: 20px;
     box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0;
+    
 }
+
 
 .container-title p {
     text-align: center;
-    font-size: 20px;
+    font-size: 18px;
     font-weight: bold;
-    padding: 10px 20px;
+    padding: 1px 20px;
     color: whitesmoke;
 
 }
@@ -131,6 +163,84 @@ p.content {
     font-weight: 700;
     color: rgb(40, 40, 40);
 }
+
+/* button */
+.createButton {
+    width: 200px;
+    border: none;
+    padding: 10px 20px;
+    background-color: #0038A8;
+    font-family: 'Montserrat', sans-serif;
+    color: whitesmoke;
+    font-size: 15px;
+    border-radius: 20px;
+    font-weight: bold;
+    transition: transform 0.3s ease;
+    cursor: pointer;
+}
+
+.createButton:hover {
+    transform: scale(1.04);
+}
+
+/* table properties */
+
+
+.main-container,
+.main {
+  width: 100%;
+  max-width: 100%;
+}
+
+
+.table-wrapper {
+  width: 100%;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  border-radius: 12px;
+  background: #ffffff;
+}
+
+
+.dbtable {
+  width: 100%;
+  min-width: 900px; 
+  border-collapse: collapse;
+  background: #ffffff;
+}
+
+
+.dbtable thead {
+  background-color: #f8fafc;
+}
+
+.dbtable th {
+  text-align: left;
+  padding: 14px 16px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: #374151;
+  border-bottom: 2px solid #e5e7eb;
+  white-space: nowrap;
+}
+
+
+.dbtable td {
+  padding: 14px 16px;
+  font-size: 0.85rem;
+  color: #1f2937;
+  border-bottom: 1px solid #e5e7eb;
+  vertical-align: middle;
+  white-space: nowrap;
+}
+
+
+.dbtable tbody tr:hover {
+  background-color: #f1f5f9;
+}
+
+
+
 
 
 
