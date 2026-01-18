@@ -93,19 +93,44 @@ body:before {
     background: rgba(237, 237, 237, 0.1);
     min-height: 200px;
     border-radius: 30px;
-    backdrop-filter: blur(2px);
+    backdrop-filter: blur(10px);
     box-shadow: 0 4px 8px rgba(0,0,0,0.2);
     cursor: pointer;
     transition: transform 0.3s ease;
     padding: 10px 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
 }
 
 .card:hover {
-    transform: scale(1.01);
+    transform: scale(1.03);
 }
 
-.cardcontent p {
-    color: rgb(66, 66, 66);
-    font-weight: bold;
+.card img {
+    height: 120px;
 }
+
+.cardcontent {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+}
+
+h2.h4 {
+    margin: 0px;
+    padding: 0px;
+    font-size: 60px;
+    color: #CE1126;
+}
+
+p.content {
+    margin: 0px;
+    padding: 0px;
+    font-weight: 700;
+    color: rgb(40, 40, 40);
+}
+
+
 

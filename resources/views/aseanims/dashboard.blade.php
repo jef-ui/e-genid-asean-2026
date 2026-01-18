@@ -21,15 +21,31 @@
             </div>
 
             <div class="container-grid">
+
+                {{-- no. of stgepr --}}
                 <a href="/asean-2026/dashboard/e-id-generated"><div class="card" style="grid-area: card-1">
                     
-                    <div class="cardcontent">
-                        <p>Number of STGEPR</p>
-                    </div>
+                <img src="{{asset ('icons/users-three.svg')}}" alt="icon" class="icon">
+
+                <div class="cardcontent">
+                    <h2 class="h4">40</h2>
+                    <p class="content">NO. OF STGEPR</p>
+                </div>
+
+                </div></a>
+                {{-- no. of imt --}}
+                <a href="#"><div class="card" style="grid-area: card-2">
+                    
+                <img src="{{asset ('icons/users-four.svg')}}" alt="icon" class="icon">
+
+                <div class="cardcontent">
+                    <h2 class="h4">40</h2>
+                    <p class="content">NO. OF IMT</p>
+                </div>
 
                 </div></a>
 
-                <div class="card" style="grid-area: card-2"></div>
+    
                 <div class="card" style="grid-area: card-3"></div>
                 <div class="card" style="grid-area: card-4"></div>
                 <div class="card" style="grid-area: card-5"></div>
