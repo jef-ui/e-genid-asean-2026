@@ -25,12 +25,8 @@
                     </div>
             </div>
 
-        </div>
-
-
-
-        
+        </div>    
     </div>
-    
 </body>
+<script src="{{asset('js/livedate.js')}}"></script>
 </html>
