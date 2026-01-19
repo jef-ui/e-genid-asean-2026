@@ -232,6 +232,55 @@ p.content {
   background-color: #f1f5f9;
 }
 
+/* FORMS */
+
+.form-container {
+    display: flex;
+    flex-direction: column;
+    max-width: 1320px;     
+    margin: 0 auto;       
+    padding: 15px 10px; 
+    background-color: whitesmoke;
+    border-radius: 10px;
+    padding: 40px; 
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1); 
+}
+
+.imt-form {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.form-row-one {
+    display: flex;
+    flex: 1;
+    width: 100%;
+    gap: 10px;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+}
+
+.form-group label {
+    font-weight: bold;
+    color: #2e2e2e;
+    font-size: 12px;
+}
+
+.form-group input {
+    width: 400px;
+    border: none;
+    padding: 10px 20px;
+    box-shadow: 0 3px 8px rgba(0,0,0,0.1);
+    border-radius: 10px;
+}
+
+
+
 
 
 
