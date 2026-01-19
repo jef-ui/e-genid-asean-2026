@@ -48,10 +48,33 @@
                             <input type="text" placeholder="STGEPR Position">
                         </div>
 
-                        <div class="form-group">
+                    <div class="form-group">
                             <label for="office_designation">Office Designation</label>
                             <input type="text" placeholder="Office Designation">
                         </div>
+                    </div>
+{{-- row3 --}}
+                    <div class="form-row-one">
+                        <div class="form-group">
+                            <label for="office-agency">Office / Agency</label>
+                            <input type="text" placeholder="Office / Agency">
+                        </div>
+
+                    <div class="form-group">
+                            <label for="contact_number">Contact Number</label>
+                            <input type="number" placeholder="Contact Number">
+                        </div>
+                    </div>
+                    {{-- row 4 --}}
+                    <div class="form-row-block">
+                        <div class="form-group">
+                            <label for="place_assignment">Place of Assignment</label>
+                            <input type="text" placeholder="Place of Assignment">
+                        </div>
+                    </div>
+                    <div class="upload-take-picture">
+                        <button class="openButton">Upload Photo</button>
+                        <button class="openButton">Take A Picture</button>
                     </div>
                 </div>
             </div>
@@ -61,4 +84,6 @@
 </body>
 <script src="{{ asset('js/livedate.js') }}"></script>
 
+
 </html>
+
