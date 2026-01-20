@@ -95,9 +95,6 @@
         CTRL #: {{ $record->ctrl_number }}
     </div>
 
-    <button id="downloadBtn" style="margin-top:15px;">
-    Download PNG
-</button>
 
 
 </div>

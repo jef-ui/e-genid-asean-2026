@@ -7,6 +7,18 @@
         <link rel="stylesheet" href="{{asset ('css/dashboard.css')}}">
     </head>
     <body>
+        @if(session('success'))
+<div id="successModal" class="custom-modal">
+    <div class="custom-modal-content">
+        <h3>Success</h3>
+        <p>{{ session('success') }}</p>
+        <button onclick="document.getElementById('successModal').style.display='none'">
+            OK
+        </button>
+    </div>
+</div>
+@endif
+
         <div class="dashboard">
             <div class="header">
                 <img src="{{asset ('images/stgepr-2.png')}}" alt="logo" class="logo">

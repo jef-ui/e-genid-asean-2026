@@ -82,7 +82,13 @@
     {{-- upload / camera --}}
     <div class="upload-take-picture">
         <!-- Hidden file input (logic only) -->
-        <input type="file" name="photo" id="photoInput" accept="image/*" hidden>
+        <input type="file"
+       name="photo"
+       id="photoInput"
+       accept="image/*"
+       hidden
+       onchange="previewPhoto(this)">
+
 
         <!-- Your existing buttons (CSS untouched) -->
         <button type="button" class="openButton"
@@ -95,24 +101,34 @@
 </button>
 
 
-        <div id="cameraModal"
-     style="display:none; position:fixed; inset:0; background:rgba(0,0,0,.7); z-index:9999; align-items:center; justify-content:center;">
 
-    <div class="modal-overlay">
-        <video id="video" autoplay playsinline width="320"></video><br><br>
-        <button class="captureButton" type="button" onclick="capturePhoto()">CAPTURE</button>
-        <button type="button" onclick="closeCamera()">X</button>
-    </div>
-</div>
+
+
+
 
 <canvas id="canvas" width="320" height="240" style="display:none;"></canvas>
 
     </div>
 
+
+
+    <img id="photoPreview"
+     style="display:none; margin-top:10px; width:140px; height:140px; border-radius:50%; object-fit:cover; border:2px solid #ccc;">         
+
+<div id="photoLoading"
+     style="display:none;
+            margin-top:10px;
+            justify-content:center;">
+    <div class="spinner"></div>
+</div>
+
     {{-- submit --}}
-    <div class="saveButton">
-        <button type="submit">Enroll Data</button>
-    </div>
+<div class="saveButton">
+<button type="button" onclick="openConfirmModal()">
+    Enroll Data
+</button>
+</div>
+
 </div>
 
 </form>
@@ -120,7 +136,34 @@
                 </div>
                 {{-- form --}}
             </div>
+            
         </div>
+<!-- CAMERA MODAL -->
+<div id="cameraModal"
+     style="display:none;
+            position:fixed;
+            inset:0;
+            background:rgba(0,0,0,.7);
+            z-index:9999;
+            align-items:center;
+            justify-content:center;">
+
+    <div class="modal-overlay">
+        <video id="video" autoplay playsinline width="320"></video>
+
+        <div style="margin-top:15px; display:flex; gap:10px; justify-content:center;">
+            <button class="captureButton" type="button" onclick="capturePhoto()">
+                CAPTURE
+            </button>
+
+            <button type="button" onclick="closeCamera()">
+                X
+            </button>
+        </div>
+    </div>
+</div>
+
+
     </body>
 
     <script src="{{ asset('js/livedate.js') }}"></script>
@@ -165,11 +208,94 @@ function capturePhoto() {
 
         document.getElementById('photoInput').files = dataTransfer.files;
 
-        closeCamera();
-        alert('Photo captured successfully.');
+
+// show loading + preview
+previewPhoto(document.getElementById('photoInput'));
+
+closeCamera();
+
     });
 }
 </script>
+
+<script>
+function previewPhoto(input) {
+    const preview = document.getElementById('photoPreview');
+    const loader = document.getElementById('photoLoading');
+
+    // ✅ If no file, do nothing
+    if (!input.files || !input.files[0]) {
+        loader.style.display = 'none';
+        preview.style.display = 'none';
+        return;
+    }
+
+    // show loader ONLY when file exists
+    preview.style.display = 'none';
+    loader.style.display = 'flex';
+
+    const reader = new FileReader();
+    reader.onload = e => {
+        setTimeout(() => {
+            preview.src = e.target.result;
+            preview.style.display = 'block';
+            loader.style.display = 'none';
+        }, 500);
+    };
+
+    reader.readAsDataURL(input.files[0]);
+}
+</script>
+
+
+<!-- CONFIRM ENROLL MODAL -->
+<div id="confirmModal" class="custom-modal" style="display:none;">
+    <div class="custom-modal-content">
+        <h3>Confirm Enrollment</h3>
+        <p>
+            Are you sure you want to enroll this record?<br>
+            Please make sure all details and the photo are correct.
+        </p>
+
+        <div class="modal-actions">
+            <button onclick="submitEnrollment()">Yes, Enroll</button>
+            <button onclick="closeConfirmModal()">Cancel</button>
+        </div>
+    </div>
+</div>
+
+<script>
+function openConfirmModal() {
+
+    const form = document.querySelector('form');
+    const photoInput = document.getElementById('photoInput');
+
+    // 1️⃣ Check normal required fields
+    if (!form.checkValidity()) {
+        form.reportValidity(); // shows native hints
+        return;
+    }
+
+    // 2️⃣ Check photo manually
+    if (!photoInput.files || photoInput.files.length === 0) {
+        alert('Please upload or take a photo before enrolling.');
+        return;
+    }
+
+    // 3️⃣ Everything valid → show modal
+    document.getElementById('confirmModal').style.display = 'flex';
+}
+</script>
+
+<script>
+function submitEnrollment() {
+    document.getElementById('confirmModal').style.display = 'none';
+    document.querySelector('form').submit();
+}
+</script>
+
+
+
 
 
 

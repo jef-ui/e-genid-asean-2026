@@ -30,7 +30,7 @@ public function create()
             'office_designation' => 'required',
             'office_agency' => 'required',
             'place_assignment' => 'required',
-            'photo' => 'nullable|image|max:2048',
+            'photo' => 'nullable|image|max:12288',
         ]);
 
         $now = Carbon::now('Asia/Manila');
@@ -69,7 +69,10 @@ public function create()
             'photo_path' => $photoPath,
         ]);
 
-        return redirect()->route('stgepr.index');
+return redirect()
+    ->route('stgepr.index')
+    ->with('success', 'ID generated successfully.');
+
     }
 
     public function index()
