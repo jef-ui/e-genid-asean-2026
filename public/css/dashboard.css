@@ -468,17 +468,11 @@ img#photoPreview {
     justify-content: center;
 }
 
+/* auto capitalized */
+.imt-form input[type="text"] {
+    text-transform: uppercase;
+}
 
 
-
-
-
-
-
-
-
-
-
-
-
+/* RESPONSIVENESS */
 
