@@ -76,6 +76,10 @@
                         <button class="openButton">Upload Photo</button>
                         <button class="openButton">Take A Picture</button>
                     </div>
+                    {{-- button --}}
+                    <div class="saveButton">
+                        <button>Enroll Data</button>
+                    </div>
                 </div>
             </div>
             {{-- form --}}
