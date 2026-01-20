@@ -35,8 +35,8 @@
     {{-- row 1 --}}
     <div class="form-row-one">
         <div class="form-group">
-            <label for="ctrl_number">Ctrl Number</label>
-            <input type="text" placeholder="AUTO GENERATED" readonly>
+            <label for="ctrl_number">Ctrl Number<small> (Auto-Generated)</small></label>
+            <input type="text" style="color: rgb(59, 59, 59); font-weight: bold;" value="{{ $previewCtrlNumber }}" readonly>
         </div>
 
         <div class="form-group">
@@ -90,9 +90,23 @@
             Upload Photo
         </button>
 
-        <button type="button" class="openButton">
-            Take A Picture
-        </button>
+<button type="button" class="openButton" onclick="openCamera()">
+    Take A Picture
+</button>
+
+
+        <div id="cameraModal"
+     style="display:none; position:fixed; inset:0; background:rgba(0,0,0,.7); z-index:9999; align-items:center; justify-content:center;">
+
+    <div class="modal-overlay">
+        <video id="video" autoplay playsinline width="320"></video><br><br>
+        <button class="captureButton" type="button" onclick="capturePhoto()">CAPTURE</button>
+        <button type="button" onclick="closeCamera()">X</button>
+    </div>
+</div>
+
+<canvas id="canvas" width="320" height="240" style="display:none;"></canvas>
+
     </div>
 
     {{-- submit --}}
@@ -108,7 +122,55 @@
             </div>
         </div>
     </body>
+
     <script src="{{ asset('js/livedate.js') }}"></script>
+
+    <script>
+let stream = null;
+
+function openCamera() {
+    const modal = document.getElementById('cameraModal');
+    const video = document.getElementById('video');
+
+    navigator.mediaDevices.getUserMedia({ video: true })
+        .then(s => {
+            stream = s;
+            video.srcObject = stream;
+            modal.style.display = 'flex';
+        })
+        .catch(err => {
+            alert('Camera access denied.');
+        });
+}
+
+function closeCamera() {
+    if (stream) {
+        stream.getTracks().forEach(track => track.stop());
+    }
+    document.getElementById('cameraModal').style.display = 'none';
+}
+
+function capturePhoto() {
+    const video = document.getElementById('video');
+    const canvas = document.getElementById('canvas');
+    const ctx = canvas.getContext('2d');
+
+    ctx.drawImage(video, 0, 0, canvas.width, canvas.height);
+
+    canvas.toBlob(blob => {
+        const file = new File([blob], 'camera-photo.png', { type: 'image/png' });
+
+        const dataTransfer = new DataTransfer();
+        dataTransfer.items.add(file);
+
+        document.getElementById('photoInput').files = dataTransfer.files;
+
+        closeCamera();
+        alert('Photo captured successfully.');
+    });
+}
+</script>
+
 
 
     </html>

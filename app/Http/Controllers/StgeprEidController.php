@@ -8,10 +8,19 @@ use Carbon\Carbon;
 
 class StgeprEidController extends Controller
 {
-    public function create()
-    {
-        return view('aseanims.create');
-    }
+public function create()
+{
+    // Get highest existing CTRL number (gap-safe)
+    $lastNumber = StgeprEid::selectRaw(
+        "MAX(CAST(SUBSTRING(ctrl_number, -3) AS UNSIGNED)) as max_no"
+    )->value('max_no');
+
+    $nextNumber = $lastNumber ? $lastNumber + 1 : 1;
+
+    $previewCtrlNumber = 'STGEPR_ASEAN_2026_' . str_pad($nextNumber, 3, '0', STR_PAD_LEFT);
+
+    return view('aseanims.create', compact('previewCtrlNumber'));
+}
 
     public function store(Request $request)
     {
@@ -74,6 +83,18 @@ public function show($id)
     $record = StgeprEid::findOrFail($id);
     return view('aseanims.showid', compact('record'));
 }
+
+public function destroy($id)
+{
+    $record = StgeprEid::findOrFail($id);
+    $record->delete();
+
+    return redirect()
+        ->route('stgepr.index')
+        ->with('success', 'Record deleted successfully.');
+}
+
+
 
 
     

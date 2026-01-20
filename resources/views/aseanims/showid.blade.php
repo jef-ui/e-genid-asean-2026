@@ -3,6 +3,9 @@
 <head>
 <meta charset="UTF-8">
 <title>STGEPR e-ID</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Google+Sans:ital,opsz,wght@0,17..18,400..700;1,17..18,400..700&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Montserrat:ital,wght@0,100..900;1,100..900&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
 
 <style>
     body {
@@ -11,6 +14,7 @@
         display: flex;
         justify-content: center;
         padding: 20px;
+        font-family: 'Montserrat',sans-serif;
     }
 
     .id-card {
@@ -19,7 +23,7 @@
         background: url('{{ asset("images/stgepr-template.png") }}') no-repeat center;
         background-size: cover;
         position: relative;
-        font-family: Arial, sans-serif;
+        font-family: 'Montserrat', sans-serif;
     }
 
     /* PHOTO */
@@ -39,7 +43,7 @@
         bottom: 150px;
         width: 100%;
         text-align: center;
-        font-size: 22px;
+        font-size: 28px;
         font-weight: bold;
         text-transform: uppercase;
     }
@@ -47,10 +51,11 @@
     /* POSITION */
     .position {
         position: absolute;
-        bottom: 100px;
+        bottom: 95px;
         width: 100%;
         text-align: center;
-        font-size: 16px;
+        font-size: 30px;
+        font-weight: bold;
         text-transform: uppercase;
     }
 
@@ -60,7 +65,7 @@
         bottom: 35px;
         width: 100%;
         text-align: center;
-        font-size: 14px;
+        font-size: 20px;
         font-weight: bold;
     }
 </style>
@@ -90,7 +95,15 @@
         CTRL #: {{ $record->ctrl_number }}
     </div>
 
+    <button id="downloadBtn" style="margin-top:15px;">
+    Download PNG
+</button>
+
+
 </div>
 
+
 </body>
+
+
 </html>

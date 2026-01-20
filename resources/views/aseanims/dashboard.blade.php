@@ -32,7 +32,7 @@
                 <img src="{{asset ('icons/users-three.svg')}}" alt="icon" class="icon">
 
                 <div class="cardcontent">
-                    <h2 class="h4">40</h2>
+                    <h2 class="h4">{{ $totalStgepr }}</h2>
                     <p class="content">NO. OF STGEPR<br/> Members</p>
                 </div>
 

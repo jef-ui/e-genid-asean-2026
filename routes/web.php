@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\StgeprEidController;
 
 /*
@@ -17,9 +18,16 @@ Route::get('/asean-2026', function () {
     return view('aseanims.index');
 });
 
-Route::get('/asean-2026/dashboard', function () {
-    return view('aseanims.dashboard');
-});
+/*
+|--------------------------------------------------------------------------
+| Dashboard (Controller-driven)
+|--------------------------------------------------------------------------
+*/
+
+Route::get(
+    '/asean-2026/dashboard',
+    [DashboardController::class, 'index']
+);
 
 /*
 |--------------------------------------------------------------------------
@@ -27,13 +35,13 @@ Route::get('/asean-2026/dashboard', function () {
 |--------------------------------------------------------------------------
 */
 
-// LIST / DATABASE VIEW (generatedid.blade.php)
+// LIST / DATABASE VIEW
 Route::get(
     '/asean-2026/dashboard/enrolled-stgepr-e-ids',
     [StgeprEidController::class, 'index']
 )->name('stgepr.index');
 
-// ENROLLMENT FORM (create.blade.php)
+// ENROLLMENT FORM
 Route::get(
     '/asean-2026/dashboard/enrolled-stgepr-e-ids/e-id-enrollment-form',
     [StgeprEidController::class, 'create']
@@ -45,7 +53,15 @@ Route::post(
     [StgeprEidController::class, 'store']
 )->name('stgepr.store');
 
+// VIEW ID
 Route::get(
     '/stgepr/e-id/view/{id}',
     [StgeprEidController::class, 'show']
 )->name('stgepr.show');
+
+//DELETE
+Route::delete(
+    '/stgepr/e-id/delete/{id}',
+    [StgeprEidController::class, 'destroy']
+)->name('stgepr.delete');
+
