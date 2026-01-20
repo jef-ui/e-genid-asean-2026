@@ -43,6 +43,7 @@
             <table class="dbtable">
             <thead>
                 <tr>
+                <th>PHOTO</th>
                 <th>CTRL NUMBER</th>
                 <th>TASK GROUP</th>
                 <th>NAME</th>
@@ -55,6 +56,21 @@
     <tbody>
     @foreach($records as $r)
     <tr>
+        <td style="text-align:center;">
+    @if($r->photo_path)
+        <img src="{{ asset('storage/' . $r->photo_path) }}"
+             style="
+                width:40px;
+                height:40px;
+                border-radius:50%;
+                object-fit:cover;
+                border:1px solid #ccc;
+             ">
+    @else
+        <span style="font-size:10px; color:#999;">N/A</span>
+    @endif
+</td>
+
         <td>{{ $r->ctrl_number }}</td>
         <td>STGEPR</td>
         <td>{{ $r->full_name }}</td>

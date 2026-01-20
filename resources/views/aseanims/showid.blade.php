@@ -29,8 +29,8 @@
     /* PHOTO */
     .photo {
         position: absolute;
-        top: 400px;      /* adjust later */
-        left: 180px;     /* adjust later */
+        top: 397px;      /* adjust later */
+        left: 177px;     /* adjust later */
         width: 140px;
         height: 140px;
         object-fit: cover;
