@@ -1,0 +1,80 @@
+<?php
+
+namespace App\Http\Controllers;
+
+use App\Models\StgeprEid;
+use Illuminate\Http\Request;
+use Carbon\Carbon;
+
+class StgeprEidController extends Controller
+{
+    public function create()
+    {
+        return view('aseanims.create');
+    }
+
+    public function store(Request $request)
+    {
+        $request->validate([
+            'full_name' => 'required',
+            'stgepr_position' => 'required',
+            'office_designation' => 'required',
+            'office_agency' => 'required',
+            'place_assignment' => 'required',
+            'photo' => 'nullable|image|max:2048',
+        ]);
+
+        $now = Carbon::now('Asia/Manila');
+
+        /**
+         * ✅ CORRECT CTRL NUMBER LOGIC
+         * - Get highest existing number
+         * - If none exists → start at 001
+         */
+        $lastCtrl = StgeprEid::orderBy('id', 'desc')->first();
+
+        if ($lastCtrl) {
+            $lastNumber = (int) substr($lastCtrl->ctrl_number, -3);
+            $nextNumber = $lastNumber + 1;
+        } else {
+            $nextNumber = 1;
+        }
+
+        $ctrlNumber = 'STGEPR_ASEAN_2026_' . str_pad($nextNumber, 3, '0', STR_PAD_LEFT);
+
+        $photoPath = null;
+        if ($request->hasFile('photo')) {
+            $photoPath = $request->file('photo')->store('stgepr_ids', 'public');
+        }
+
+        StgeprEid::create([
+            'ph_date' => $now->toDateString(),
+            'ph_time' => $now->toTimeString(),
+            'ctrl_number' => $ctrlNumber,
+            'full_name' => strtoupper($request->full_name),
+            'stgepr_position' => strtoupper($request->stgepr_position),
+            'office_designation' => strtoupper($request->office_designation),
+            'office_agency' => strtoupper($request->office_agency),
+            'contact_number' => $request->contact_number,
+            'place_assignment' => strtoupper($request->place_assignment),
+            'photo_path' => $photoPath,
+        ]);
+
+        return redirect()->route('stgepr.index');
+    }
+
+    public function index()
+    {
+        $records = StgeprEid::latest()->get();
+        return view('aseanims.generatedid', compact('records'));
+    }
+
+public function show($id)
+{
+    $record = StgeprEid::findOrFail($id);
+    return view('aseanims.showid', compact('record'));
+}
+
+
+    
+}

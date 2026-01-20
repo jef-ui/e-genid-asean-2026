@@ -40,17 +40,25 @@
               <th>PLACE OF ASSIGNMENT</th>
             </tr>
           </thead>
-          <tbody id="tableBody">
-            <tr>
-              <td>stgepr_asean_2026_001</td>
-              <td>STGEPR</td>
-              <td>JUAN DELA CRUZ</td>
-              <td>COMMANDER</td>
-              <td>OIC, OCD MIMAROPA</td>
-              <td>OCD MIMAROPA</td>
-              <td>STAGING AREA 1</td>
-            </tr>
-          </tbody>
+<tbody>
+@foreach($records as $r)
+<tr>
+    <td>{{ $r->ctrl_number }}</td>
+    <td>STGEPR</td>
+    <td>{{ $r->full_name }}</td>
+    <td>{{ $r->stgepr_position }}</td>
+    <td>{{ $r->office_designation }}</td>
+    <td>{{ $r->office_agency }}</td>
+    <td>{{ $r->place_assignment }}</td>
+    <td>
+    <a href="{{ route('stgepr.show', $r->id) }}">
+        <button>VIEW ID</button>
+    </a>
+</td>
+
+</tr>
+@endforeach
+</tbody>
         </table>
         </div>
       </div>
