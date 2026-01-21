@@ -38,12 +38,12 @@
 
                 </div></a>
                 {{-- no. of imt --}}
-                <a href="#"><div class="card" style="grid-area: card-2">
+                <a href="{{ route('imt.index') }}"><div class="card" style="grid-area: card-2">
                     
                 <img src="{{asset ('icons/users-four.svg')}}" alt="icon" class="icon">
 
                 <div class="cardcontent">
-                    <h2 class="h4">10</h2>
+                    <h2 class="h4">{{ $totalImt }}</h2>
                     <p class="content">NO. OF IMT<br/> Members</p>
                 </div>
 
@@ -54,7 +54,7 @@
                 <img src="{{asset ('icons/users-four.svg')}}" alt="icon" class="icon">
 
                 <div class="cardcontent">
-                    <h2 class="h4">10</h2>
+                    <h2 class="h4">{{ $totalAll }}</h2>
                     <p class="content">Total Members</p>
                 </div>
 

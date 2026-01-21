@@ -3,6 +3,8 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\StgeprEidController;
+use App\Http\Controllers\ImtEidController;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -65,3 +67,34 @@ Route::delete(
     [StgeprEidController::class, 'destroy']
 )->name('stgepr.delete');
 
+
+/*
+|--------------------------------------------------------------------------
+| IMT E-ID
+|--------------------------------------------------------------------------
+*/
+
+Route::get(
+    '/asean-2026/dashboard/enrolled-imt-e-ids',
+    [ImtEidController::class, 'index']
+)->name('imt.index');
+
+Route::get(
+    '/asean-2026/dashboard/enrolled-imt-e-ids/e-id-enrollment-form',
+    [ImtEidController::class, 'create'] 
+);
+
+Route::post(
+    '/imt/e-id/store',
+    [ImtEidController::class, 'store']
+)->name('imt.store');
+
+Route::get(
+    '/imt/e-id/view/{id}',
+    [ImtEidController::class, 'show']
+)->name('imt.show');
+
+Route::delete(
+    '/imt/e-id/delete/{id}',
+    [ImtEidController::class, 'destroy']
+)->name('imt.delete');
