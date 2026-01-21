@@ -364,6 +364,14 @@ img.td-icon {
     padding: 10px 25px;
     border-radius: 30px;
     border: 4px solid #0038A8;
+    width: 380px;
+}
+
+.modal-overlay #cameraSelect {
+    border: none;
+    border-radius: 10px;
+    color: #0038A8;
+    font-weight: bold;
 }
 
 #video {

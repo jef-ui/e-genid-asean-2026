@@ -138,88 +138,128 @@
 
         </div>
         <!-- CAMERA MODAL -->
+        <!-- CAMERA MODAL -->
         <div id="cameraModal"
-            style="display:none;
-            position:fixed;
-            inset:0;
-            background:rgba(0,0,0,.7);
-            z-index:9999;
-            align-items:center;
-            justify-content:center;">
+    style="display:none;
+    position:fixed;
+    inset:0;
+    background:rgba(0,0,0,.7);
+    z-index:9999;
+    align-items:center;
+    justify-content:center;">
 
-            <div class="modal-overlay">
-                <video id="video" autoplay playsinline width="320"></video>
+    <div class="modal-overlay">
 
-                <div style="margin-top:15px; display:flex; gap:10px; justify-content:center;">
-                    <button class="captureButton" type="button" onclick="capturePhoto()">
-                        CAPTURE
-                    </button>
+        <!-- Camera selector -->
+        <select id="cameraSelect"
+            style="margin-bottom:10px; padding:6px; width:100%;">
+        </select>
 
-                    <button type="button" onclick="closeCamera()">
-                        X
-                    </button>
-                </div>
-            </div>
+        <video id="video" autoplay playsinline width="320"></video>
+
+        <div style="margin-top:15px; display:flex; gap:10px; justify-content:center;">
+            <button class="captureButton" type="button" onclick="capturePhoto()">
+                CAPTURE
+            </button>
+
+            <button type="button" onclick="closeCamera()">X</button>
         </div>
+    </div>
+</div>
 
 
     </body>
 
     <script src="{{ asset('js/livedate.js') }}"></script>
 
-    <script>
-        let stream = null;
+   <script>
+let stream = null;
+let currentDeviceId = null;
 
-        function openCamera() {
-            const modal = document.getElementById('cameraModal');
-            const video = document.getElementById('video');
+async function loadCameras() {
+    const devices = await navigator.mediaDevices.enumerateDevices();
+    const cameras = devices.filter(d => d.kind === 'videoinput');
+    const select = document.getElementById('cameraSelect');
 
-            navigator.mediaDevices.getUserMedia({
-                    video: true
-                })
-                .then(s => {
-                    stream = s;
-                    video.srcObject = stream;
-                    modal.style.display = 'flex';
-                })
-                .catch(err => {
-                    alert('Camera access denied.');
-                });
+    select.innerHTML = '';
+
+    cameras.forEach((cam, index) => {
+        const option = document.createElement('option');
+        option.value = cam.deviceId;
+        option.text = cam.label || `Camera ${index + 1}`;
+        select.appendChild(option);
+    });
+
+    // Auto-select last camera (usually external)
+    if (cameras.length > 0) {
+        currentDeviceId = cameras[cameras.length - 1].deviceId;
+        select.value = currentDeviceId;
+    }
+}
+
+async function startCamera(deviceId) {
+    if (stream) {
+        stream.getTracks().forEach(track => track.stop());
+    }
+
+    stream = await navigator.mediaDevices.getUserMedia({
+        video: {
+            deviceId: { exact: deviceId },
+            width: { ideal: 1280 },
+            height: { ideal: 720 }
         }
+    });
 
-        function closeCamera() {
-            if (stream) {
-                stream.getTracks().forEach(track => track.stop());
-            }
-            document.getElementById('cameraModal').style.display = 'none';
-        }
+    document.getElementById('video').srcObject = stream;
+}
 
-        function capturePhoto() {
-            const video = document.getElementById('video');
-            const canvas = document.getElementById('canvas');
-            const ctx = canvas.getContext('2d');
+async function openCamera() {
+    const modal = document.getElementById('cameraModal');
+    modal.style.display = 'flex';
 
-            ctx.drawImage(video, 0, 0, canvas.width, canvas.height);
+    // First permission request (needed to get labels)
+    await navigator.mediaDevices.getUserMedia({ video: true });
 
-            canvas.toBlob(blob => {
-                const file = new File([blob], 'camera-photo.png', {
-                    type: 'image/png'
-                });
+    await loadCameras();
+    if (currentDeviceId) {
+        await startCamera(currentDeviceId);
+    }
+}
 
-                const dataTransfer = new DataTransfer();
-                dataTransfer.items.add(file);
+document.getElementById('cameraSelect').addEventListener('change', async function () {
+    currentDeviceId = this.value;
+    await startCamera(currentDeviceId);
+});
 
-                document.getElementById('photoInput').files = dataTransfer.files;
+function closeCamera() {
+    if (stream) {
+        stream.getTracks().forEach(track => track.stop());
+        stream = null;
+    }
+    document.getElementById('cameraModal').style.display = 'none';
+}
 
+function capturePhoto() {
+    const video = document.getElementById('video');
+    const canvas = document.getElementById('canvas');
+    const ctx = canvas.getContext('2d');
 
-                // show loading + preview
-                previewPhoto(document.getElementById('photoInput'));
+    canvas.width = video.videoWidth;
+    canvas.height = video.videoHeight;
 
-                closeCamera();
+    ctx.drawImage(video, 0, 0);
 
-            });
-        }
-    </script>
+    canvas.toBlob(blob => {
+        const file = new File([blob], 'camera-photo.png', { type: 'image/png' });
+        const dataTransfer = new DataTransfer();
+        dataTransfer.items.add(file);
+
+        document.getElementById('photoInput').files = dataTransfer.files;
+        previewPhoto(document.getElementById('photoInput'));
+        closeCamera();
+    });
+}
+</script>
 
     <script>
         function previewPhoto(input) {
