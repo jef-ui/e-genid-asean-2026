@@ -62,19 +62,27 @@
 
                 {{-- Contact Directories --}}
                 <a href="#"><div class="card" style="grid-area: card-4">
-                    
                 <img src="{{asset ('icons/addressbook.svg')}}" alt="icon" class="icon">
-
                 <div class="cardcontent">
                     <h2 class="h4" style="font-size:40px">Contact</h2>
                     <p class="content">Directories</p>
                 </div>
-
                 </div></a>
 
             
                 <div class="card" style="grid-area: card-5"></div>
-                <div class="card" style="grid-area: card-6"></div>
+
+
+                <a href="#"><div class="card" style="grid-area: card-6">
+                <img src="{{asset ('icons/weather.png')}}" alt="icon" class="icon">
+                <div class="cardcontent">
+                    <h2 class="h4" style="font-size:40px">Sunny</h2>
+                    <p class="content">Coron, Palawan</p>
+                </div>
+                </div></a>
+
+
+                </div>
             </div>
         </div>
     </div>
