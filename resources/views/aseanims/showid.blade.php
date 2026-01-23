@@ -31,10 +31,10 @@
         position: absolute;
         top: 397px;      /* adjust later */
         left: 177px;     /* adjust later */
-        width: 140px;
-        height: 140px;
-        object-fit: cover;
-        border-radius: 50%;
+        width: 150px;
+        height: 150px;
+        border: 2px solid  #0038A8;
+        border-radius: 10px;
     }
 
     /* FULL NAME */

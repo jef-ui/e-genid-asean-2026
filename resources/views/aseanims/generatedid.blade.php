@@ -34,8 +34,10 @@
                     <span id="phDate"></span>
                 </div>
             </div>
-
+        <div class="enroll-id-dashboard">
         <a href="/asean-2026/dashboard/enrolled-stgepr-e-ids/e-id-enrollment-form"><button class="createButton">Enroll STGEPR e-ID</button></a>
+        <a href="/asean-2026/dashboard"><button class="createButton"  style="background-color: #CE1126">Dashboard</button></a>
+        </div>
 
         <div class="main-container">
         <div class="main">
