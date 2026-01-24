@@ -54,7 +54,7 @@ body {
     bottom: 95px;
     width: 100%;
     text-align: center;
-    font-size: 30px;
+    font-size: 25px;
     font-weight: bold;
     text-transform: uppercase;
 }

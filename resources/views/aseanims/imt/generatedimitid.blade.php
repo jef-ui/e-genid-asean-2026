@@ -51,7 +51,7 @@
                 <th>POSITION</th>
                 {{-- <th>DESIGNATION</th> --}}
                 <th>OFFICE/AGENCY</th>
-                <th>PLACE OF ASSIGNMENT</th>
+                <th>CONTACT NUMBER</th>
                 </tr>
             </thead>
     <tbody>
@@ -78,11 +78,19 @@
         <td>{{ $r->imt_position }}</td>
         {{-- <td>{{ $r->office_designation }}</td> --}}
         <td>{{ $r->office_agency }}</td>
-        <td>{{ $r->place_assignment }}</td>
+        <td>{{ $r->contact_number }}</td>
 
         <td><a href="{{ route('imt.show', $r->id) }}"><img src="{{asset ('icons/eye-fill.svg')}}" alt="icon" class="td-icon"></a></td>
 
         <td><button class="icon-btn" onclick="downloadId({{ $r->id }})"><img src="{{ asset('icons/tray-arrow-down-fill.svg') }}" alt="icon" class="td-icon"></button></td>
+
+        <td>
+    <a href="{{ route('imt.edit', $r->id) }}">
+        <img src="{{ asset('icons/pencil-fill.svg') }}"
+             class="td-icon">
+    </a>
+</td>
+
 
         <td><form action="{{ route('imt.delete', $r->id) }}" method="POST" onsubmit="return confirm('Are you sure you want to delete this record?');"> @csrf @method('DELETE')<button class="icon-btn" type="submit"><img src="{{asset ('icons/trash-fill.svg')}}" alt="td-icon"></button>
         </form></td>
@@ -94,6 +102,12 @@
             </div>
         </div>
         </div>
+        <button onclick="window.open('{{ route('imt.print') }}', '_blank')"
+        class="createButton"
+        style="background:#0a7cff;">
+    Print IMT Masterlist
+</button>
+
         </div>
     <script src="{{asset ('js/livedate.js')}}"></script>
     <div id="hidden-id-container"

@@ -84,4 +84,51 @@ class ImtEidController extends Controller
             ->route('imt.index')
             ->with('success', 'Record deleted successfully.');
     }
+
+    public function edit($id)
+{
+    $record = ImtEid::findOrFail($id);
+    return view('aseanims.imt.edit', compact('record'));
+}
+
+public function update(Request $request, $id)
+{
+    $record = ImtEid::findOrFail($id);
+
+    $request->validate([
+        'full_name' => 'required',
+        'imt_position' => 'required',
+        'office_agency' => 'required',
+        'place_assignment' => 'required',
+        'photo' => 'nullable|image|max:12288',
+    ]);
+
+    // Replace photo only if new one is uploaded
+    if ($request->hasFile('photo')) {
+        $photoPath = $request->file('photo')
+                             ->store('imt_ids', 'public');
+        $record->photo_path = $photoPath;
+    }
+
+    $record->update([
+        'full_name' => strtoupper($request->full_name),
+        'imt_position' => strtoupper($request->imt_position),
+        'office_agency' => strtoupper($request->office_agency),
+        'place_assignment' => strtoupper($request->place_assignment),
+    ]);
+
+    return redirect()
+        ->route('imt.index')
+        ->with('success', 'IMT record updated successfully.');
+}
+
+public function print()
+{
+    // ORDER FROM FIRST RECORD → LAST
+    $records = ImtEid::orderBy('id', 'asc')->get();
+
+    return view('aseanims.imt.print_imt', compact('records'));
+}
+
+
 }

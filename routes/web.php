@@ -100,3 +100,23 @@ Route::delete(
 )->name('imt.delete');
 
 Route::get('/dashboard/live-counts', [DashboardController::class, 'liveCounts']);
+
+Route::get('/stgepr/{id}/edit', [StgeprEidController::class, 'edit'])
+     ->name('stgepr.edit');
+
+Route::put('/stgepr/{id}', [StgeprEidController::class, 'update'])
+     ->name('stgepr.update');
+
+     Route::get('/imt/{id}/edit', [ImtEidController::class, 'edit'])
+     ->name('imt.edit');
+
+Route::put('/imt/{id}', [ImtEidController::class, 'update'])
+     ->name('imt.update');
+
+     Route::get('/stgepr/print', [StgeprEidController::class, 'print'])
+     ->name('stgepr.print');
+
+     Route::get('/imt/print', [ImtEidController::class, 'print'])
+     ->name('imt.print');
+
+

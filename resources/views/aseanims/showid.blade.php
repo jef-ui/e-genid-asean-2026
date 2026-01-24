@@ -17,14 +17,19 @@
         font-family: 'Montserrat',sans-serif;
     }
 
-    .id-card {
-        width: 500px;
-        height: 750px;
-        background: url('{{ asset("images/stgepr-template.png") }}') no-repeat center;
-        background-size: cover;
-        position: relative;
-        font-family: 'Montserrat', sans-serif;
-    }
+.id-card {
+    width: 500px;
+    height: 750px;
+    min-width: 500px;
+    min-height: 750px;
+    max-width: 500px;
+    max-height: 750px;
+
+    background: url('{{ asset("images/stgepr-template.png") }}') no-repeat center;
+    background-size: cover;
+    position: relative;
+}
+
 
     /* PHOTO */
     .photo {
@@ -49,15 +54,21 @@
     }
 
     /* POSITION */
-    .position {
-        position: absolute;
-        bottom: 95px;
-        width: 100%;
-        text-align: center;
-        font-size: 30px;
-        font-weight: bold;
-        text-transform: uppercase;
-    }
+.position {
+    position: absolute;
+    bottom: 95px;
+    left: 0;
+    width: 100%;
+
+    text-align: center;
+    font-size: 30px;        /* FIXED */
+    font-weight: bold;
+    text-transform: uppercase;
+    line-height: 1;
+
+    white-space: nowrap;    /* ONE LINE */
+    transform-origin: center;
+}
 
     /* CTRL NUMBER */
     .ctrl {
@@ -101,6 +112,22 @@
 
 
 </body>
+<script>
+function fitPositionText() {
+    const el = document.querySelector('.position');
+    if (!el) return;
+
+    const parentWidth = el.parentElement.offsetWidth;
+    const textWidth = el.scrollWidth;
+
+    if (textWidth > parentWidth) {
+        const scale = parentWidth / textWidth;
+        el.style.transform = `scaleX(${scale})`;
+    }
+}
+
+window.onload = fitPositionText;
+</script>
 
 
 </html>

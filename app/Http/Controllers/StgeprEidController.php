@@ -97,6 +97,52 @@ public function destroy($id)
         ->with('success', 'Record deleted successfully.');
 }
 
+public function edit($id)
+{
+    $record = StgeprEid::findOrFail($id);
+    return view('aseanims.edit', compact('record'));
+}
+
+public function update(Request $request, $id)
+{
+    $record = StgeprEid::findOrFail($id);
+
+    $request->validate([
+        'full_name' => 'required',
+        'stgepr_position' => 'required',
+        'office_agency' => 'required',
+        'place_assignment' => 'required',
+        'photo' => 'nullable|image|max:12288',
+    ]);
+
+    // Replace photo only if new one is uploaded
+    if ($request->hasFile('photo')) {
+        $photoPath = $request->file('photo')
+                             ->store('stgepr_ids', 'public');
+        $record->photo_path = $photoPath;
+    }
+
+    $record->update([
+        'full_name' => strtoupper($request->full_name),
+        'stgepr_position' => strtoupper($request->stgepr_position),
+        'office_agency' => strtoupper($request->office_agency),
+        'place_assignment' => strtoupper($request->place_assignment),
+    ]);
+
+    return redirect()
+        ->route('stgepr.index')
+        ->with('success', 'Record updated successfully.');
+}
+
+public function print()
+{
+    $records = StgeprEid::orderBy('id', 'asc')->get();
+    return view('aseanims.print_stgepr', compact('records'));
+}
+
+
+
+
 
 
 
