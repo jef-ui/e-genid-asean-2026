@@ -137,7 +137,7 @@ span#phDate{
 }
 
 .card:hover {
-    transform: scale(1.03);
+    transform: scale(1.01);
 }
 
 .card img {
