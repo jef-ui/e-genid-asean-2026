@@ -32,7 +32,7 @@
                 <img src="{{asset ('icons/users-three.svg')}}" alt="icon" class="icon">
 
                 <div class="cardcontent">
-                    <h2 class="h4">{{ $totalStgepr }}</h2>
+                    <h2 class="h4" id="totalStgepr">{{ $totalStgepr }}</h2>
                     <p class="content">NO. OF STGEPR<br/> Members</p>
                 </div>
 
@@ -43,7 +43,7 @@
                 <img src="{{asset ('icons/users-four.svg')}}" alt="icon" class="icon">
 
                 <div class="cardcontent">
-                    <h2 class="h4">{{ $totalImt }}</h2>
+                    <h2 class="h4" id="totalImt">{{ $totalImt }}</h2>
                     <p class="content">NO. OF IMT<br/> Members</p>
                 </div>
 
@@ -54,7 +54,7 @@
                 <img src="{{asset ('icons/users-four.svg')}}" alt="icon" class="icon">
 
                 <div class="cardcontent">
-                    <h2 class="h4">{{ $totalAll }}</h2>
+                    <h2 class="h4" id="totalAll">{{ $totalAll }}</h2>
                     <p class="content">Total Members</p>
                 </div>
 
@@ -62,10 +62,14 @@
 
                 {{-- Contact Directories --}}
                 <a href="#"><div class="card" style="grid-area: card-4">
-                <img src="{{asset ('icons/addressbook.svg')}}" alt="icon" class="icon">
                 <div class="cardcontent">
-                    <h2 class="h4" style="font-size:40px">Contact</h2>
-                    <p class="content">Directories</p>
+                    
+                    <h2 class="h4" 
+                    style="font-size:20px; margin-bottom: 12px;">
+                    Event Information</h2>
+                    <p class="content" style="font-weight: 400; font-size: 13px;margin-bottom: 10px;text-align: left"><b>Venue:</b> Tag Resort, Coron Palawan</p>
+                    <p class="content" style="font-weight: 400; font-size: 13px; justify-content:center;align-items:center;display: flex; gap:10px;flex-direction: column;color: "><b>NUMBER OF DELEGATES-FOREIGNER</b><b class="bold" style="font-size: 40px;color: #CE1126;">60</b></p>
+            
                 </div>
                 </div></a>
 
@@ -92,7 +96,7 @@
             <tr>
               <td>01/26/2026</td>
               <td>1324H</td>
-              <td>IMT arrived at Incident Command Post</td>
+              <td>IMT arrived at Incident Command Post lorem</td>
             </tr>
           </tbody>
           
@@ -116,4 +120,22 @@
     </div>
 </body>
 <script src="{{asset ('js/livedate.js')}}"></script>
+
+<script>
+function updateDashboardCounts() {
+    fetch('/dashboard/live-counts')
+        .then(res => res.json())
+        .then(data => {
+            document.getElementById('totalStgepr').textContent = data.stgepr;
+            document.getElementById('totalImt').textContent = data.imt;
+            document.getElementById('totalAll').textContent = data.totalAll;
+        })
+        .catch(err => console.error(err));
+}
+
+setInterval(updateDashboardCounts, 5000);
+updateDashboardCounts();
+</script>
+
+
 </html>

@@ -98,3 +98,5 @@ Route::delete(
     '/imt/e-id/delete/{id}',
     [ImtEidController::class, 'destroy']
 )->name('imt.delete');
+
+Route::get('/dashboard/live-counts', [DashboardController::class, 'liveCounts']);

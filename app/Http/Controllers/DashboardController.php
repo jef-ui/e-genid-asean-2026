@@ -19,4 +19,17 @@ class DashboardController extends Controller
             'totalAll'
         ));
     }
+
+public function liveCounts()
+{
+    $stgepr = StgeprEid::count();
+    $imt    = ImtEid::count();
+
+    return response()->json([
+        'stgepr'   => $stgepr,
+        'imt'      => $imt,
+        'totalAll' => $stgepr + $imt,
+    ]);
+}
+
 }

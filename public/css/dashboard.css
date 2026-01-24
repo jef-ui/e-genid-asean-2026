@@ -498,7 +498,6 @@ img#photoPreview {
 
 .dbtable-log {
   width: 100%;
-  min-width: 900px; 
   border-collapse: collapse;
 }
 
@@ -516,10 +515,11 @@ img#photoPreview {
   font-size: 0.85rem;   
   vertical-align: middle;
   white-space: nowrap;
+  text-wrap: inherit;
 }
 
 .dbtable-log tr td:nth-last-child(-n+3) {
-    padding: 8px 16px;
+    padding: 3px 10px;
 }
 
 
