@@ -29,7 +29,8 @@ Route::get('/asean-2026', function () {
 Route::get(
     '/asean-2026/dashboard',
     [DashboardController::class, 'index']
-);
+)->name('dashboard');
+
 
 /*
 |--------------------------------------------------------------------------
@@ -118,5 +119,15 @@ Route::put('/imt/{id}', [ImtEidController::class, 'update'])
 
      Route::get('/imt/print', [ImtEidController::class, 'print'])
      ->name('imt.print');
+
+     use App\Http\Controllers\ActivityLogController;
+
+Route::post('/activity-log/store', [ActivityLogController::class, 'store'])
+     ->name('activitylog.store');
+
+     Route::get('/dashboard/live-activity-logs', 
+    [DashboardController::class, 'liveActivityLogs']
+);
+
 
 

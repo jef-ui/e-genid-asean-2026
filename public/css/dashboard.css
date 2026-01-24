@@ -492,9 +492,12 @@ img#photoPreview {
 
 .table-wrapper-log {
   width: 100%;
-  height: 400px;
+  height: 400px;          /* fixed height */
   border-radius: 12px;
+  overflow-y: auto;      /* ✅ vertical scroll */
+  overflow-x: auto;      /* ✅ horizontal scroll if needed */
 }
+
 
 .dbtable-log {
   width: 100%;
@@ -521,6 +524,171 @@ img#photoPreview {
 .dbtable-log tr td:nth-last-child(-n+3) {
     padding: 3px 10px;
 }
+
+/* Webkit browsers */
+.table-wrapper-log::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+.table-wrapper-log::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.table-wrapper-log::-webkit-scrollbar-thumb {
+  background: rgba(0, 0, 0, 0.15);
+  border-radius: 10px;
+}
+
+.table-wrapper-log:hover::-webkit-scrollbar-thumb {
+  background: rgba(0, 0, 0, 0.35);
+}
+
+/* Firefox */
+.table-wrapper-log {
+  scrollbar-width: thin;
+  scrollbar-color: rgba(0,0,0,.3) transparent;
+}
+
+/* ===== MODAL BASE ===== */
+.custom-modal {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.45);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 9999;
+}
+
+/* ===== MODAL CARD ===== */
+.modal-log {
+  background: #fff;
+  width: 100%;
+  max-width: 520px;
+  border-radius: 14px;
+  padding: 20px 24px;
+  box-shadow: 0 20px 60px rgba(0,0,0,0.2);
+  animation: modalFade 0.25s ease;
+}
+
+@keyframes modalFade {
+  from { transform: translateY(10px); opacity: 0; }
+  to   { transform: translateY(0); opacity: 1; }
+}
+
+/* ===== HEADER ===== */
+.modal-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 16px;
+}
+
+.modal-header h3 {
+  margin: 0;
+  font-size: 18px;
+  font-weight: 700;
+  color: #CE1126;
+}
+
+.modal-close {
+  background: none;
+  border: none;
+  font-size: 24px;
+  line-height: 1;
+  cursor: pointer;
+  color: #999;
+}
+
+.modal-close:hover {
+  color: #000;
+}
+
+/* ===== FORM ===== */
+.modal-form label {
+  font-size: 12px;
+  font-weight: 600;
+  margin-bottom: 6px;
+  display: block;
+}
+
+.modal-form input,
+.modal-form textarea {
+  width: 100%;
+  padding: 10px 12px;
+  font-size: 13px;
+  border-radius: 8px;
+  border: 1px solid #ddd;
+  outline: none;
+}
+
+.modal-form input:focus,
+.modal-form textarea:focus {
+  border-color: #CE1126;
+}
+
+.form-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+  margin-bottom: 12px;
+}
+
+.form-group {
+  margin-bottom: 12px;
+}
+
+/* ===== ACTIONS ===== */
+.modal-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+  margin-top: 16px;
+}
+
+.btn-primary {
+  background: #CE1126;
+  color: #fff;
+  border: none;
+  padding: 10px 16px;
+  border-radius: 8px;
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.btn-primary:hover {
+  background: #b10f21;
+}
+
+.btn-secondary {
+  background: #e0e0e0;
+  color: #333;
+  border: none;
+  padding: 10px 16px;
+  border-radius: 8px;
+  font-size: 13px;
+  cursor: pointer;
+}
+
+.addLogButton {
+    background: transparent;
+    border: none;
+    padding: 0;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.addLogButton img {
+    width: 30px;   /* adjust as needed */
+    height: 30px;
+}
+
+
+
 
 
 
