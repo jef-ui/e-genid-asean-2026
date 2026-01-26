@@ -36,4 +36,17 @@ class ActivityLogController extends Controller
             ->route('dashboard')
             ->with('success', 'Activity log added successfully.');
     }
+
+public function print()
+{
+    $logs = ActivityLog::orderBy('log_date', 'asc')
+        ->orderBy('log_time', 'asc')
+        ->get();
+
+    return view('aseanims.activitylogprint', compact('logs'));
+}
+
+
+
+
 }

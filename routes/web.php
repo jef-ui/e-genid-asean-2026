@@ -129,5 +129,10 @@ Route::post('/activity-log/store', [ActivityLogController::class, 'store'])
     [DashboardController::class, 'liveActivityLogs']
 );
 
+Route::get('/activity-log/print', [ActivityLogController::class, 'print'])
+     ->name('activitylog.print');
+
+     
+
 
 

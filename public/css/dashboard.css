@@ -760,10 +760,35 @@ img#photoPreview {
     50%  { opacity: 0.25; }
     100% { opacity: 1; }
 }
+/* shared alert movement */
+.alert-move {
+    font-weight: 800;
+    font-size: 15px;
+    color: #000000; /* default black */
+    animation: alertMove 1.5s infinite;
+}
 
+/* arrived number = green */
+.arrived-count {
+    color: #2e8b57;
+    font-weight: 900;
+    margin-left: 4px;
+}
 
+/* "Arrival Ongoing" = red */
+.status-ongoing {
+    color: #CE1126; /* red */
+    font-weight: 900;
+}
 
-
+/* blink + subtle movement */
+@keyframes alertMove {
+    0%   { opacity: 1;   transform: translateX(0); }
+    25%  { opacity: 0.5; transform: translateX(-2px); }
+    50%  { opacity: 1;   transform: translateX(2px); }
+    75%  { opacity: 0.6; transform: translateX(-1px); }
+    100% { opacity: 1;   transform: translateX(0); }
+}
 
 
 

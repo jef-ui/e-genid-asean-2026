@@ -62,27 +62,58 @@
 
                 {{-- Contact Directories --}}
                 <a href="#"><div class="card" style="grid-area: card-4">
-                <div class="cardcontent">
+<div class="cardcontent">
                     
-                    <h2 class="h4" 
-                    style="font-size:20px; margin-bottom: 12px;">
-                    Event Information</h2>
-                    <p class="content" style="font-weight: 400; font-size: 13px;margin-bottom: 10px;text-align: left"><b>Venue:</b> Tag Resort, Coron Palawan</p>
-                    <p class="content" style="font-weight: 400; font-size: 13px; justify-content:center;align-items:center;display: flex; gap:10px;flex-direction: column;color: "><b>NUMBER OF DELEGATES-FOREIGNER</b><b class="bold" style="font-size: 40px;color: #CE1126;">60</b></p>
-            
-                </div>
+    <h2 class="h4" 
+        style="font-size:20px; margin-bottom: 12px;">
+        Event Information
+    </h2>
+
+    <p class="content"
+       style="font-weight: 400; font-size: 13px; margin-bottom: 6px; text-align: left;">
+        <b>Venue:</b> Tag Resort, Coron Palawan
+    </p>
+
+    <p class="content"
+       style="font-weight: 400; font-size: 13px; margin-bottom: 6px; text-align: left;">
+        <b>Total Foreign Delegates:</b> 60
+    </p>
+
+<p class="content alert-move">
+    <b>⚠ Delegates Arrived:</b>
+    <span class="arrived-count">2</span>
+</p>
+
+<p class="content alert-move">
+    <b>Status:</b>
+    <span class="status-ongoing">Arrival Ongoing (58 Pending)
+</p>
+
+
+
+</div>
+
                 </div></a>
 
             
                 <div class="card" style="grid-area: card-5">
                             <div class="table-wrapper-log">
+                                <a href="{{ route('activitylog.print') }}" target="_blank">
+    
+    <button class="addLogButton" style="background:#555;">
+        <img src="{{asset ('icons/printer.svg')}}" alt="icon">
+    </button>
+</a>
 
                         <button class="addLogButton" onclick="openAddLogModal()">
     <img src="{{asset ('icons/stack-plus-fill.svg')}}" alt="icon"> <b style="font-size: 20px; margin-left:20px">ACTIVITY LOG</b>
 </button>
+
+
         <table class="dbtable-log">
           <thead>
             <tr>
+                
               <th>DATE</th>
               <th>TIME</th>
               <th>ACTIVITIES/PARTICULARS</th>
@@ -158,18 +189,18 @@
             </div>
 
             <div class="form-group">
-                <label>Action Taken</label>
+                <label>Activities/ Particulars</label>
                 <textarea name="action_taken"
                           rows="4"
-                          placeholder="Describe the activity or action taken..."
+                          placeholder="Describe the activity..."
                           required></textarea>
             </div>
 
             <div class="form-group">
-                <label>Reported By</label>
+                <label>Action Taken</label>
                 <input type="text"
                        name="reported_by"
-                       placeholder="IMT / STGEPR / OPS"
+                       placeholder="Describe actions taken...."
                        required>
             </div>
 
@@ -277,6 +308,7 @@ function closeAddLogModal() {
     }
 }
 </script>
+
 
 
 
