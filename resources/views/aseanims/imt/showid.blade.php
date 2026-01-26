@@ -43,10 +43,12 @@ body {
     bottom: 150px;
     width: 100%;
     text-align: center;
-    font-size: 28px;
+    font-size: 23px;
     font-weight: bold;
     text-transform: uppercase;
+    white-space: nowrap;   /* no line break */
 }
+
 
 /* POSITION */
 .position {

@@ -70,6 +70,15 @@
                required>
     </div>
 
+    {{-- CONTACT NUMBER --}}
+    <div class="form-group">
+        <label>Contact Number</label>
+<input type="text"
+       name="contact_number"
+       value="{{ $record->contact_number }}"
+       required>
+    </div>
+
     {{-- PLACE --}}
     <div class="form-group">
         <label>Place of Assignment</label>
@@ -78,6 +87,8 @@
                value="{{ $record->place_assignment }}"
                required>
     </div>
+
+
 
     {{-- PHOTO PREVIEW --}}
     <div style="margin-top:10px;">

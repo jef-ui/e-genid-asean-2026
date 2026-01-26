@@ -48,7 +48,7 @@
         bottom: 150px;
         width: 100%;
         text-align: center;
-        font-size: 28px;
+        font-size: 23px;
         font-weight: bold;
         text-transform: uppercase;
     }
@@ -61,7 +61,7 @@
     width: 100%;
 
     text-align: center;
-    font-size: 30px;        /* FIXED */
+    font-size: 21px;        /* FIXED */
     font-weight: bold;
     text-transform: uppercase;
     line-height: 1;

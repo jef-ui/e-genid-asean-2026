@@ -83,18 +83,31 @@ span#phDate{
 
 .container-title {
     background: linear-gradient(
-        to right,
+        270deg,
         #0038A8,
-        #1A5ED8
+        #1A5ED8,
+        #0038A8
     );
+    background-size: 400% 400%;
+    animation: titleGradientMove 6s ease infinite;
+
     border-radius: 20px;
     box-shadow: 0 4px 8px rgba(0,0,0,0.2);
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 0;
-    
+    padding: 0; /* unchanged */
 }
+
+/* Only animation, no layout impact */
+@keyframes titleGradientMove {
+    0%   { background-position: 0% 50%; }
+    50%  { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
+
+
 
 
 .container-title p {
@@ -122,10 +135,10 @@ span#phDate{
 }
 
 .card {
-    background: rgba(237, 237, 237, 0.1);
+    background-color: whitesmoke;
     min-height: 200px;
     border-radius: 30px;
-    backdrop-filter: blur(30px);
+    /* backdrop-filter: blur(35px); */
     box-shadow: 0 4px 8px rgba(0,0,0,0.2);
     cursor: pointer;
     transition: transform 0.3s ease;
@@ -506,19 +519,20 @@ img#photoPreview {
 
 .dbtable-log th {
   text-align: left;
-  padding: 14px 16px;
-  font-size: 0.85rem;
+  padding: 10px 12px;
+  font-size: 0.95rem;
   font-weight: 800;
   white-space: nowrap;
 }
 
 .dbtable-log td {
-  padding: 14px 16px;
+  padding: 10px 12px;
   margin-bottom: 10px;
-  font-size: 0.85rem;   
+  font-size: 0.90rem;   
   vertical-align: middle;
   white-space: nowrap;
   text-wrap: inherit;
+  font-weight: 600;
 }
 
 .dbtable-log tr td:nth-last-child(-n+3) {
@@ -683,9 +697,72 @@ img#photoPreview {
 }
 
 .addLogButton img {
-    width: 30px;   /* adjust as needed */
-    height: 30px;
+    width: 20px;   /* adjust as needed */
+    height: 20px;
 }
+
+.dbtable-log thead tr {
+    background: linear-gradient(
+        270deg,
+        #0b1c2d,   /* navy blue */
+        #ff8c00,   /* orange */
+        #0b1c2d
+    );
+    background-size: 400% 400%;
+    animation: headerMove 6s ease infinite;
+
+}
+
+@keyframes headerMove {
+    0% {
+        background-position: 0% 50%;
+    }
+    50% {
+        background-position: 100% 50%;
+    }
+    100% {
+        background-position: 0% 50%;
+    }
+}
+
+.dbtable-log thead th {
+    color: #ffffff;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    padding: 12px;
+    text-align: center;
+    border-top-right-radius: 10px;
+    border-top-left-radius: 10px;
+}
+
+.blink-warning td {
+    color: #dc3545; /* danger red */
+    font-weight: 700;
+    animation: blinkText 1.2s infinite;
+}
+
+@keyframes blinkText {
+    0%   { opacity: 1; }
+    50%  { opacity: 0.2; }
+    100% { opacity: 1; }
+}
+
+.dbtable-log tbody tr:first-child td {
+    color: #dc3545; /* danger red */
+    font-weight: 700;
+    font-size: 20px;
+    animation: blinkRow 1.2s infinite;
+}
+
+@keyframes blinkRow {
+    0%   { opacity: 1; }
+    50%  { opacity: 0.25; }
+    100% { opacity: 1; }
+}
+
+
+
 
 
 

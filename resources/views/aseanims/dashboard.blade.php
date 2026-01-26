@@ -76,24 +76,22 @@
             
                 <div class="card" style="grid-area: card-5">
                             <div class="table-wrapper-log">
-                            <h3 style="text-align: center; color: #CE1126; font-weight: bold; font-size:20px">ACTIVITY LOG</h3>
+
                         <button class="addLogButton" onclick="openAddLogModal()">
-    <img src="{{asset ('icons/stack-plus-fill.svg')}}" alt="icon">
+    <img src="{{asset ('icons/stack-plus-fill.svg')}}" alt="icon"> <b style="font-size: 20px; margin-left:20px">ACTIVITY LOG</b>
 </button>
-
-
         <table class="dbtable-log">
           <thead>
             <tr>
               <th>DATE</th>
               <th>TIME</th>
+              <th>ACTIVITIES/PARTICULARS</th>
               <th>ACTIONS TAKEN</th>
-              <th>REPORTED BY</th>
             </tr>
           </thead>
 <tbody id="activityLogBody">
-@foreach($activityLogs as $r)
-<tr>
+@foreach($activityLogs as $index => $r)
+<tr class="{{ $index === 0 ? 'blink-warning' : '' }}">
     <td>{{ \Carbon\Carbon::parse($r->log_date)->format('m/d/Y') }}</td>
     <td>{{ \Carbon\Carbon::parse($r->log_time)->format('Hi') }}H</td>
     <td>{{ $r->action_taken }}</td>
