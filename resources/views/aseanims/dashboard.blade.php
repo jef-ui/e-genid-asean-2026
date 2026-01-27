@@ -80,8 +80,8 @@
     </p>
 
 <p class="content alert-move">
-    <b>⚠ Delegates Arrived:</b>
-    <span class="arrived-count">?</span>
+    <b>⚠ Delegates Arrived as of Today:</b>
+    <span class="arrived-count">27</span>
 </p>
 
 <p class="content alert-move">
