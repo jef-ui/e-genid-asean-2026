@@ -81,12 +81,12 @@
 
 <p class="content alert-move">
     <b>⚠ Delegates Arrived:</b>
-    <span class="arrived-count">2</span>
+    <span class="arrived-count">?</span>
 </p>
 
 <p class="content alert-move">
     <b>Status:</b>
-    <span class="status-ongoing">Arrival Ongoing (58 Pending)
+    <span class="status-ongoing">Arrival Ongoing (? Pending)
 </p>
 
 
@@ -150,7 +150,6 @@
             </div>
         </div>
     </div>
-</body>
 {{-- ADD LOG MODAL --}}
 <div id="addLogModal" class="custom-modal" style="display:none;">
     <div class="custom-modal-content modal-log">
@@ -173,18 +172,20 @@
             <div class="form-row">
                 <div class="form-group">
                     <label>Date</label>
-                    <input type="date"
-                           name="log_date"
-                           value="{{ now()->toDateString() }}"
-                           required>
+<input type="date"
+       id="logDate"
+       name="log_date"
+       value="{{ now()->toDateString() }}"
+       required>
                 </div>
 
                 <div class="form-group">
                     <label>Time</label>
-                    <input type="time"
-                           name="log_time"
-                           value="{{ now()->format('H:i') }}"
-                           required>
+<input type="time"
+       id="logTime"
+       name="log_time"
+       value="{{ now()->format('H:i') }}"
+       required>
                 </div>
             </div>
 
@@ -225,6 +226,8 @@
     </div>
 </div>
 
+
+</body>
 
 <script src="{{asset ('js/livedate.js')}}"></script>
 
@@ -273,8 +276,6 @@ updateActivityLogs();
 </script>
 
 <script>
-let logClockInterval = null;
-
 function openAddLogModal() {
     const modal = document.getElementById('addLogModal');
     modal.style.display = 'flex';
@@ -282,30 +283,17 @@ function openAddLogModal() {
     const dateInput = document.getElementById('logDate');
     const timeInput = document.getElementById('logTime');
 
-    function updateDateTime() {
-        const now = new Date();
+    const now = new Date();
 
-        // YYYY-MM-DD
-        dateInput.value = now.toISOString().split('T')[0];
+    // Set current date (YYYY-MM-DD)
+    dateInput.value = now.toISOString().split('T')[0];
 
-        // HH:MM (24-hour)
-        timeInput.value = now.toTimeString().slice(0, 5);
-    }
-
-    // Set immediately
-    updateDateTime();
-
-    // Update every second
-    logClockInterval = setInterval(updateDateTime, 1000);
+    // Set current time (HH:MM – 24 hour)
+    timeInput.value = now.toTimeString().slice(0, 5);
 }
 
 function closeAddLogModal() {
     document.getElementById('addLogModal').style.display = 'none';
-
-    if (logClockInterval) {
-        clearInterval(logClockInterval);
-        logClockInterval = null;
-    }
 }
 </script>
 

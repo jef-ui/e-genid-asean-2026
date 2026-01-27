@@ -132,7 +132,6 @@ Route::post('/activity-log/store', [ActivityLogController::class, 'store'])
 Route::get('/activity-log/print', [ActivityLogController::class, 'print'])
      ->name('activitylog.print');
 
-     
 
 
 

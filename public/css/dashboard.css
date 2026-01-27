@@ -751,7 +751,7 @@ img#photoPreview {
 .dbtable-log tbody tr:first-child td {
     color: #dc3545; /* danger red */
     font-weight: 700;
-    font-size: 20px;
+    font-size: 15px;
     animation: blinkRow 1.2s infinite;
 }
 
