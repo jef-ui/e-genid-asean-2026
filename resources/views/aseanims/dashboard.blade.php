@@ -84,17 +84,17 @@
 
                             <p class="content"
                                 style="font-weight: 400; font-size: 13px; margin-bottom: 6px; text-align: left;">
-                                <b>Total Foreign Delegates:</b> 60
+                                <b>Total Foreign Delegates:</b> 40
                             </p>
 
                             <p class="content alert-move">
-                                <b>⚠ Delegates Arrived as of Today:</b>
-                                <span class="arrived-count">?</span>
+                                <b>VIP Delegates Arrived:</b>
+                                <span class="arrived-count" style="font-size:20px">40</span>
                             </p>
 
                             <p class="content alert-move">
                                 <b>Status:</b>
-                                <span class="status-ongoing">Arrival Ongoing (? Pending)
+                                <span class="status-ongoing">COMPLETED
                             </p>
 
 
@@ -151,7 +151,7 @@
                     <div class="card" style="grid-area: card-6">
                         <img src="{{ asset('icons/weather.png') }}" alt="icon" class="icon">
                         <div class="cardcontent">
-                            <h2 class="h4" style="font-size:40px">Fair</h2>
+                            <h2 class="h4" style="font-size:40px">Overcast</h2>
                             <p class="content">Coron, Palawan</p>
                         </div>
                     </div>

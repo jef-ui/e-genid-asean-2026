@@ -48,6 +48,7 @@ body:before {
     justify-content: center;
     align-items: center;
     gap: 10px;
+    font-size: 20px;
 }
 
 
@@ -126,7 +127,9 @@ span#phDate{
     grid-template-areas: 
     "card-1 card-2 card-3"
     "card-4 card-5 card-5"
+    "card-6 card-5 card-5"
     "card-6 card-5 card-5";
+    
     gap: 5px;
 }
 
@@ -520,19 +523,30 @@ img#photoPreview {
 .dbtable-log th {
   text-align: left;
   padding: 10px 12px;
-  font-size: 0.95rem;
+  font-size: 0.90rem;
   font-weight: 800;
   white-space: nowrap;
 }
 
+.dbtable-log tr th:first-child {
+    border-top-left-radius: 10px;
+}
+
+.dbtable-log tr th:last-child {
+    border-top-right-radius: 10px;
+}
+
+
+
 .dbtable-log td {
   padding: 10px 12px;
   margin-bottom: 10px;
-  font-size: 0.90rem;   
+  font-size: 0.80rem;   
   vertical-align: middle;
   white-space: nowrap;
   text-wrap: inherit;
-  font-weight: 600;
+  font-weight: 400;
+  border-bottom: 1px solid rgba(101, 101, 101, 0.2)
 }
 
 .dbtable-log tr td:nth-last-child(-n+3) {
@@ -732,14 +746,18 @@ img#photoPreview {
     letter-spacing: 1px;
     padding: 12px;
     text-align: center;
-    border-top-right-radius: 10px;
+
+
+}
+
+.dbtable-log:first-child {
     border-top-left-radius: 10px;
 }
 
 .blink-warning td {
     color: #dc3545; /* danger red */
     font-weight: 700;
-    animation: blinkText 1.2s infinite;
+    animation: blinkText 10s infinite;
 }
 
 @keyframes blinkText {
@@ -751,8 +769,9 @@ img#photoPreview {
 .dbtable-log tbody tr:first-child td {
     color: #0038A8; /* danger red */
     font-weight: 700;
-    font-size: 15px;
-    animation: blinkRow 5s infinite;
+    font-size: 16px;
+    /* animation: blinkRow 2s infinite; */
+    text-align: left;
 }
 
 @keyframes blinkRow {
