@@ -752,7 +752,7 @@ img#photoPreview {
     color: #0038A8; /* danger red */
     font-weight: 700;
     font-size: 15px;
-    animation: blinkRow .9s infinite;
+    animation: blinkRow 5s infinite;
 }
 
 @keyframes blinkRow {
@@ -765,7 +765,7 @@ img#photoPreview {
     font-weight: 800;
     font-size: 15px;
     color: #000000; /* default black */
-    animation: alertMove 1.5s infinite;
+    animation: alertMove 3s infinite;
 }
 
 /* arrived number = green */
