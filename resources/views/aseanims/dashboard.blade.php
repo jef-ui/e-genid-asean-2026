@@ -71,35 +71,40 @@
                 {{-- Contact Directories --}}
                 <a href="#">
                     <div class="card" style="grid-area: card-4">
-                        <div class="cardcontent">
+<div class="cardcontent">
 
-                            <h2 class="h4" style="font-size:20px; margin-bottom: 12px;">
-                                Event Information
-                            </h2>
+    <h2 class="h4" style="font-size:20px; margin-bottom: 12px;">
+        Event Information
+    </h2>
 
-                            <p class="content"
-                                style="font-weight: 400; font-size: 13px; margin-bottom: 6px; text-align: left;">
-                                <b>Venue:</b> Tag Resort, Coron Palawan
-                            </p>
+    <p class="content"
+        style="font-weight: 400; font-size: 13px; margin-bottom: 6px; text-align: left;">
+        <b>Venue:</b> Tag Resort, Coron Palawan
+    </p>
 
-                            <p class="content"
-                                style="font-weight: 400; font-size: 13px; margin-bottom: 6px; text-align: left;">
-                                <b>Total Foreign Delegates:</b> 40
-                            </p>
+    <p class="content"
+        style="font-weight: 400; font-size: 13px; margin-bottom: 6px; text-align: left;">
+        <b>Total Foreign Delegates:</b> 40
+    </p>
 
-                            <p class="content alert-move">
-                                <b>VIP Delegates Arrived:</b>
-                                <span class="arrived-count" style="font-size:20px">40</span>
-                            </p>
+    <p class="content alert-move">
+        <b>VIP Delegates Arrived:</b>
+        <span class="arrived-count" style="font-size:20px">40</span>
+    </p>
 
-                            <p class="content alert-move">
-                                <b>Status:</b>
-                                <span class="status-ongoing">COMPLETED
-                            </p>
+    <!-- NEW LINE FOR DELEGATES GOING HOME -->
+    <p class="content alert-move">
+        <b>Delegates Successfully Departed:</b>
+        <span class="departing-count" style="font-size:20px">2</span>
+    </p>
 
+    <p class="content alert-move">
+        <b>Status:</b>
+        <span class="status-ongoing">COMPLETED</span>
+    </p>
 
+</div>
 
-                        </div>
 
                     </div>
                 </a>
@@ -300,3 +305,6 @@
 
 
 </html>
+
+
+{{-- 0947-391-5335,  --}}
