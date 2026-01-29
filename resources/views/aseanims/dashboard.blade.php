@@ -140,7 +140,7 @@
                                     <tr class="{{ $index === 0 ? 'blink-warning' : '' }}">
                                         <td>{{ \Carbon\Carbon::parse($r->log_date)->format('m/d/Y') }}</td>
                                         <td>{{ \Carbon\Carbon::parse($r->log_time)->format('Hi') }}H</td>
-                                        <td>{{ $r->action_taken }}</td>
+                                        <td class="log-text">{{ $r->action_taken }}</td>
                                         <td>{{ $r->reported_by }}</td>
                                     </tr>
                                 @endforeach
@@ -156,7 +156,7 @@
                     <div class="card" style="grid-area: card-6">
                         <img src="{{ asset('icons/weather.png') }}" alt="icon" class="icon">
                         <div class="cardcontent">
-                            <h2 class="h4" style="font-size:40px">Overcast</h2>
+                            <h2 class="h4" style="font-size:40px">Sunny</h2>
                             <p class="content">Coron, Palawan</p>
                         </div>
                     </div>
@@ -199,7 +199,14 @@
 
                 <div class="form-group">
                     <label>Activities/ Particulars</label>
-                    <textarea name="action_taken" rows="4" placeholder="Describe the activity..." required></textarea>
+                    <textarea 
+    name="action_taken"
+    id="actionTaken"
+    rows="4"
+    placeholder="Describe the activity..."
+    required
+></textarea>
+
                 </div>
 
                 <div class="form-group">
@@ -260,21 +267,21 @@
                 logs.forEach(log => {
                     const tr = document.createElement('tr');
                     tr.innerHTML = `
-                    <td>${log.date}</td>
-                    <td>${log.time}</td>
-                    <td>${log.action}</td>
-                    <td>${log.reported_by}</td>
-                `;
+                        <td>${log.date}</td>
+                        <td>${log.time}</td>
+                        <td class="log-text">${log.action}</td>
+                        <td>${log.reported_by}</td>
+                    `;
                     tbody.appendChild(tr);
                 });
             })
             .catch(err => console.error(err));
     }
 
-    // refresh every 5 seconds (same as counts)
     setInterval(updateActivityLogs, 5000);
     updateActivityLogs();
 </script>
+
 
 <script>
     function openAddLogModal() {
@@ -297,6 +304,8 @@
         document.getElementById('addLogModal').style.display = 'none';
     }
 </script>
+
+
 
 
 

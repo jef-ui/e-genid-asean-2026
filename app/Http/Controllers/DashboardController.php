@@ -39,11 +39,10 @@ class DashboardController extends Controller
             'totalAll' => $stgepr + $imt,
         ]);
     }
-    public function liveActivityLogs()
+public function liveActivityLogs()
 {
-    $logs = ActivityLog::orderBy('log_date', 'desc')
+    return ActivityLog::orderBy('log_date', 'desc')
         ->orderBy('log_time', 'desc')
-        ->limit(50)
         ->get()
         ->map(function ($log) {
             return [
@@ -53,8 +52,7 @@ class DashboardController extends Controller
                 'reported_by' => $log->reported_by,
             ];
         });
-
-    return response()->json($logs);
 }
+
 
 }
