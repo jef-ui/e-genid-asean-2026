@@ -95,7 +95,7 @@
     <!-- NEW LINE FOR DELEGATES GOING HOME -->
     <p class="content alert-move">
         <b>Delegates Successfully Departed:</b>
-        <span class="departing-count" style="font-size:20px">2</span>
+        <span class="departing-count" style="font-size:20px">?</span>
     </p>
 
     <p class="content alert-move">
