@@ -102,6 +102,14 @@
             </div>
         </div>
         </div>
+
+                <button onclick="window.open('{{ route('imt.certificates.pdf') }}')"
+        class="createButton"
+        style="background:#0a7cff;">
+    Download Certificates (PDF)
+</button>
+
+
         <button onclick="window.open('{{ route('imt.print') }}', '_blank')"
         class="createButton"
         style="background:#0a7cff;">

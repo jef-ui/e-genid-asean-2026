@@ -133,5 +133,17 @@ Route::get('/activity-log/print', [ActivityLogController::class, 'print'])
      ->name('activitylog.print');
 
 
+Route::get('/stgepr/certificates/pdf', 
+    [StgeprEidController::class, 'certificatePdf']
+)->name('stgepr.certificates.pdf');
+
+
+Route::get('/imt/certificates/pdf', 
+    [ImtEidController::class, 'certificatePdf']
+)->name('imt.certificates.pdf');
+
+
+
+
 
 

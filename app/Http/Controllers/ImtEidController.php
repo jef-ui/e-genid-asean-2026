@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Models\ImtEid;
 use Illuminate\Http\Request;
 use Carbon\Carbon;
+use Barryvdh\DomPDF\Facade\Pdf;
+use Illuminate\View\Compilers\ComponentTagCompiler;
 
 class ImtEidController extends Controller
 {
@@ -130,5 +132,14 @@ public function print()
     return view('aseanims.imt.print_imt', compact('records'));
 }
 
+public function certificatePdf()
+{
+    $records = ImtEid::orderBy('full_name', 'asc')->get();
+
+    $pdf = Pdf::loadView('aseanims.imt.certificate_pdf', compact('records'))
+        ->setPaper('a4', 'landscape');
+
+    return $pdf->download('IMT_CERTIFICATES.pdf');
+}
 
 }

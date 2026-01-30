@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Models\StgeprEid;
 use Illuminate\Http\Request;
 use Carbon\Carbon;
+use Barryvdh\DomPDF\Facade\Pdf;
+
 
 class StgeprEidController extends Controller
 {
@@ -140,10 +142,15 @@ public function print()
     return view('aseanims.print_stgepr', compact('records'));
 }
 
+public function certificatePdf()
+{
+    $records = StgeprEid::orderBy('full_name', 'asc')->get();
 
+    $pdf = Pdf::loadView('aseanims.certificate_pdf', compact('records'))
+        ->setPaper('a4', 'landscape');
 
-
-
+    return $pdf->download('STGEPR_CERTIFICATES.pdf');
+}
 
 
     
