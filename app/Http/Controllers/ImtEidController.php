@@ -137,7 +137,10 @@ public function certificatePdf()
     $records = ImtEid::orderBy('full_name', 'asc')->get();
 
     $pdf = Pdf::loadView('aseanims.imt.certificate_pdf', compact('records'))
-        ->setPaper('a4', 'landscape');
+        ->setPaper('a4', 'landscape')
+        ->setOption('dpi', 300)
+        ->setOption ('defaultFont', 'DejaVuSans')
+        ->setOption ('isRemoteEnalbed', true);
 
     return $pdf->download('IMT_CERTIFICATES.pdf');
 }

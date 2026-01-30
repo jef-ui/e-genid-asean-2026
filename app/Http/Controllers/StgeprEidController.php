@@ -147,7 +147,10 @@ public function certificatePdf()
     $records = StgeprEid::orderBy('full_name', 'asc')->get();
 
     $pdf = Pdf::loadView('aseanims.certificate_pdf', compact('records'))
-        ->setPaper('a4', 'landscape');
+        ->setPaper('a4', 'landscape')
+        ->setOption('dpi', 300)                 // 🔥 HIGH RES
+        ->setOption('defaultFont', 'DejaVuSans')
+        ->setOption('isRemoteEnabled', true);
 
     return $pdf->download('STGEPR_CERTIFICATES.pdf');
 }
