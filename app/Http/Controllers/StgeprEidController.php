@@ -148,7 +148,7 @@ public function certificatePdf()
 
     $pdf = Pdf::loadView('aseanims.certificate_pdf', compact('records'))
         ->setPaper('a4', 'landscape')
-        ->setOption('dpi', 300)                 // 🔥 HIGH RES
+        ->setOption('dpi', 300)               
         ->setOption('defaultFont', 'DejaVuSans')
         ->setOption('isRemoteEnabled', true);
 
