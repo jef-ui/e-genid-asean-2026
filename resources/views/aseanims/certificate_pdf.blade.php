@@ -34,6 +34,16 @@ body {
     font-weight: bold;
     text-transform: uppercase;
 }
+
+.ctrl-number {
+    position: absolute;
+    bottom: 0.1in;      /* adjust distance from bottom */
+    right: 0.1in;       /* or left: 0.5in if you prefer */
+    font-size: 10pt;
+    font-weight: normal;
+    color: #000;
+}
+
 </style>
 </head>
 
@@ -41,7 +51,13 @@ body {
 @foreach($records as $r)
     <div class="page">
         <div class="name">{{ $r->full_name }}</div>
+
+        <!-- CTRL NUMBER -->
+        <div class="ctrl-number">
+            CTRL NO: {{ $r->ctrl_number }}
+        </div>
     </div>
 @endforeach
+
 </body>
 </html>
