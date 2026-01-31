@@ -134,15 +134,18 @@ public function print()
 
 public function certificatePdf()
 {
-    $records = ImtEid::orderBy('full_name', 'asc')->get();
+    $records = ImtEid::orderByRaw(
+        "CAST(SUBSTRING(ctrl_number, -3) AS UNSIGNED) ASC"
+    )->get();
 
     $pdf = Pdf::loadView('aseanims.imt.certificate_pdf', compact('records'))
         ->setPaper('a4', 'landscape')
         ->setOption('dpi', 300)
-        ->setOption ('defaultFont', 'DejaVuSans')
-        ->setOption ('isRemoteEnalbed', true);
+        ->setOption('defaultFont', 'DejaVuSans')
+        ->setOption('isRemoteEnabled', true);
 
     return $pdf->download('IMT_CERTIFICATES.pdf');
 }
+
 
 }

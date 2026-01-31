@@ -30,7 +30,7 @@ body {
     top: 3.6in; /* adjust visually */
     width: 100%;
     text-align: center;
-    font-size: 40pt; /* PRINT UNITS */
+    font-size: 36pt; /* PRINT UNITS */
     font-weight: bold;
     text-transform: uppercase;
 }

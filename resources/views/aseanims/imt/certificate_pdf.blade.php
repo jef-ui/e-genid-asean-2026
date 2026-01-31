@@ -16,7 +16,7 @@ body {
 .page {
     width: 11.69in;
     height: 8.27in;
-    background: url('{{ public_path('images/certificate-template-stgepr.png') }}') no-repeat center;
+    background: url('{{ public_path('images/certificate-template-imt.png') }}') no-repeat center;
     background-size: cover;
     position: relative;
 }
@@ -30,7 +30,7 @@ body {
     top: 3.6in; /* adjust visually */
     width: 100%;
     text-align: center;
-    font-size: 40pt; /* PRINT UNITS */
+    font-size: 36pt; /* PRINT UNITS */
     font-weight: bold;
     text-transform: uppercase;
 }

@@ -144,16 +144,19 @@ public function print()
 
 public function certificatePdf()
 {
-    $records = StgeprEid::orderBy('full_name', 'asc')->get();
+    $records = StgeprEid::orderByRaw(
+        "CAST(SUBSTRING(ctrl_number, -3) AS UNSIGNED) ASC"
+    )->get();
 
     $pdf = Pdf::loadView('aseanims.certificate_pdf', compact('records'))
         ->setPaper('a4', 'landscape')
-        ->setOption('dpi', 300)               
+        ->setOption('dpi', 300)
         ->setOption('defaultFont', 'DejaVuSans')
         ->setOption('isRemoteEnabled', true);
 
     return $pdf->download('STGEPR_CERTIFICATES.pdf');
 }
+
 
 
     
