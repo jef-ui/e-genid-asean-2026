@@ -89,12 +89,12 @@
 
     <p class="content alert-move">
         <b>VIP Delegates Remaining:</b>
-        <span class="arrived-count" style="font-size:20px">69</span>
+        <span class="arrived-count" style="font-size:20px">42</span>
     </p>
 
     <p class="content alert-move">
         <b>Delegates Successfully Departed:</b>
-        <span class="departing-count" style="font-size:20px">34</span>
+        <span class="departing-count" style="font-size:20px">61</span>
     </p>
 
     <p class="content alert-move">

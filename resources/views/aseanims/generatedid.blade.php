@@ -108,11 +108,11 @@
 
         </div>
 
-        {{-- <button onclick="window.open('{{ route('stgepr.certificates.pdf') }}')" 
+        <button onclick="window.open('{{ route('stgepr.certificates.pdf') }}')" 
         class="createButton"
         style="background:#0a7cff;">
     Download Certificates (PDF)
-</button>  --}}
+</button>
 
                             <button onclick="window.open('{{ route('stgepr.print') }}', '_blank')"
         class="createButton"
