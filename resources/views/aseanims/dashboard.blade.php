@@ -84,23 +84,22 @@
 
     <p class="content"
         style="font-weight: 400; font-size: 13px; margin-bottom: 6px; text-align: left;">
-        <b>Total Foreign Delegates:</b> 40
+        <b>Total Number of Delegates:</b> 103
     </p>
 
     <p class="content alert-move">
-        <b>VIP Delegates Arrived:</b>
-        <span class="arrived-count" style="font-size:20px">40</span>
+        <b>VIP Delegates Remaining:</b>
+        <span class="arrived-count" style="font-size:20px">69</span>
     </p>
 
-    <!-- NEW LINE FOR DELEGATES GOING HOME -->
     <p class="content alert-move">
         <b>Delegates Successfully Departed:</b>
-        <span class="departing-count" style="font-size:20px">?</span>
+        <span class="departing-count" style="font-size:20px">34</span>
     </p>
 
     <p class="content alert-move">
         <b>Status:</b>
-        <span class="status-ongoing">COMPLETED</span>
+        <span class="status-ongoing">DEPARTURE PHASE</span>
     </p>
 
 </div>
