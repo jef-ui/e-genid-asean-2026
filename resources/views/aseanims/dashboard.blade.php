@@ -71,38 +71,38 @@
                 {{-- Contact Directories --}}
                 <a href="#">
                     <div class="card" style="grid-area: card-4">
-<div class="cardcontent">
+                        <div class="cardcontent">
 
-    <h2 class="h4" style="font-size:20px; margin-bottom: 12px;">
-        Event Information
-    </h2>
+                            <h2 class="h4" style="font-size:20px; margin-bottom: 12px;">
+                                Event Information
+                            </h2>
 
-    <p class="content"
-        style="font-weight: 400; font-size: 13px; margin-bottom: 6px; text-align: left;">
-        <b>Venue:</b> Tag Resort, Coron Palawan
-    </p>
+                            <p class="content"
+                                style="font-weight: 400; font-size: 13px; margin-bottom: 6px; text-align: left;">
+                                <b>Venue:</b> Tag Resort, Coron Palawan
+                            </p>
 
-    <p class="content"
-        style="font-weight: 400; font-size: 13px; margin-bottom: 6px; text-align: left;">
-        <b>Total Number of Delegates:</b> 103
-    </p>
+                            <p class="content"
+                                style="font-weight: 400; font-size: 13px; margin-bottom: 6px; text-align: left;">
+                                <b>Total Number of Delegates:</b> 103
+                            </p>
 
-    <p class="content alert-move">
-        <b>VIP Delegates Remaining:</b>
-        <span class="arrived-count" style="font-size:20px">42</span>
-    </p>
+                            <p class="content alert-move">
+                                <b>VIP Delegates Remaining:</b>
+                                <span class="arrived-count" style="font-size:20px">42</span>
+                            </p>
 
-    <p class="content alert-move">
-        <b>Delegates Successfully Departed:</b>
-        <span class="departing-count" style="font-size:20px">61</span>
-    </p>
+                            <p class="content alert-move">
+                                <b>Delegates Successfully Departed:</b>
+                                <span class="departing-count" style="font-size:20px">61</span>
+                            </p>
 
-    <p class="content alert-move">
-        <b>Status:</b>
-        <span class="status-ongoing">DEPARTURE PHASE</span>
-    </p>
+                            <p class="content alert-move">
+                                <b>Status:</b>
+                                <span class="status-ongoing">DEPARTURE PHASE</span>
+                            </p>
 
-</div>
+                        </div>
 
 
                     </div>
@@ -198,13 +198,7 @@
 
                 <div class="form-group">
                     <label>Activities/ Particulars</label>
-                    <textarea 
-    name="action_taken"
-    id="actionTaken"
-    rows="4"
-    placeholder="Describe the activity..."
-    required
-></textarea>
+                    <textarea name="action_taken" id="actionTaken" rows="4" placeholder="Describe the activity..." required></textarea>
 
                 </div>
 

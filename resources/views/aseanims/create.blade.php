@@ -139,7 +139,7 @@
         </div>
         <!-- CAMERA MODAL -->
         <div id="cameraModal"
-    style="display:none;
+            style="display:none;
     position:fixed;
     inset:0;
     background:rgba(0,0,0,.7);
@@ -147,118 +147,127 @@
     align-items:center;
     justify-content:center;">
 
-    <div class="modal-overlay">
+            <div class="modal-overlay">
 
-        <!-- Camera selector -->
-        <select id="cameraSelect"
-            style="margin-bottom:10px; padding:6px; width:100%;">
-        </select>
+                <!-- Camera selector -->
+                <select id="cameraSelect" style="margin-bottom:10px; padding:6px; width:100%;">
+                </select>
 
-        <video id="video" autoplay playsinline width="320"></video>
+                <video id="video" autoplay playsinline width="320"></video>
 
-        <div style="margin-top:15px; display:flex; gap:10px; justify-content:center;">
-            <button class="captureButton" type="button" onclick="capturePhoto()">
-                CAPTURE
-            </button>
+                <div style="margin-top:15px; display:flex; gap:10px; justify-content:center;">
+                    <button class="captureButton" type="button" onclick="capturePhoto()">
+                        CAPTURE
+                    </button>
 
-            <button type="button" onclick="closeCamera()">X</button>
+                    <button type="button" onclick="closeCamera()">X</button>
+                </div>
+            </div>
         </div>
-    </div>
-</div>
 
 
     </body>
 
     <script src="{{ asset('js/livedate.js') }}"></script>
 
- <script>
-let stream = null;
-let currentDeviceId = null;
+    <script>
+        let stream = null;
+        let currentDeviceId = null;
 
-async function loadCameras() {
-    const devices = await navigator.mediaDevices.enumerateDevices();
-    const cameras = devices.filter(d => d.kind === 'videoinput');
-    const select = document.getElementById('cameraSelect');
+        async function loadCameras() {
+            const devices = await navigator.mediaDevices.enumerateDevices();
+            const cameras = devices.filter(d => d.kind === 'videoinput');
+            const select = document.getElementById('cameraSelect');
 
-    select.innerHTML = '';
+            select.innerHTML = '';
 
-    cameras.forEach((cam, index) => {
-        const option = document.createElement('option');
-        option.value = cam.deviceId;
-        option.text = cam.label || `Camera ${index + 1}`;
-        select.appendChild(option);
-    });
+            cameras.forEach((cam, index) => {
+                const option = document.createElement('option');
+                option.value = cam.deviceId;
+                option.text = cam.label || `Camera ${index + 1}`;
+                select.appendChild(option);
+            });
 
-    // Auto-select last camera (usually external)
-    if (cameras.length > 0) {
-        currentDeviceId = cameras[cameras.length - 1].deviceId;
-        select.value = currentDeviceId;
-    }
-}
-
-async function startCamera(deviceId) {
-    if (stream) {
-        stream.getTracks().forEach(track => track.stop());
-    }
-
-    stream = await navigator.mediaDevices.getUserMedia({
-        video: {
-            deviceId: { exact: deviceId },
-            width: { ideal: 1280 },
-            height: { ideal: 720 }
+            // Auto-select last camera (usually external)
+            if (cameras.length > 0) {
+                currentDeviceId = cameras[cameras.length - 1].deviceId;
+                select.value = currentDeviceId;
+            }
         }
-    });
 
-    document.getElementById('video').srcObject = stream;
-}
+        async function startCamera(deviceId) {
+            if (stream) {
+                stream.getTracks().forEach(track => track.stop());
+            }
 
-async function openCamera() {
-    const modal = document.getElementById('cameraModal');
-    modal.style.display = 'flex';
+            stream = await navigator.mediaDevices.getUserMedia({
+                video: {
+                    deviceId: {
+                        exact: deviceId
+                    },
+                    width: {
+                        ideal: 1280
+                    },
+                    height: {
+                        ideal: 720
+                    }
+                }
+            });
 
-    // First permission request (needed to get labels)
-    await navigator.mediaDevices.getUserMedia({ video: true });
+            document.getElementById('video').srcObject = stream;
+        }
 
-    await loadCameras();
-    if (currentDeviceId) {
-        await startCamera(currentDeviceId);
-    }
-}
+        async function openCamera() {
+            const modal = document.getElementById('cameraModal');
+            modal.style.display = 'flex';
 
-document.getElementById('cameraSelect').addEventListener('change', async function () {
-    currentDeviceId = this.value;
-    await startCamera(currentDeviceId);
-});
+            // First permission request (needed to get labels)
+            await navigator.mediaDevices.getUserMedia({
+                video: true
+            });
 
-function closeCamera() {
-    if (stream) {
-        stream.getTracks().forEach(track => track.stop());
-        stream = null;
-    }
-    document.getElementById('cameraModal').style.display = 'none';
-}
+            await loadCameras();
+            if (currentDeviceId) {
+                await startCamera(currentDeviceId);
+            }
+        }
 
-function capturePhoto() {
-    const video = document.getElementById('video');
-    const canvas = document.getElementById('canvas');
-    const ctx = canvas.getContext('2d');
+        document.getElementById('cameraSelect').addEventListener('change', async function() {
+            currentDeviceId = this.value;
+            await startCamera(currentDeviceId);
+        });
 
-    canvas.width = video.videoWidth;
-    canvas.height = video.videoHeight;
+        function closeCamera() {
+            if (stream) {
+                stream.getTracks().forEach(track => track.stop());
+                stream = null;
+            }
+            document.getElementById('cameraModal').style.display = 'none';
+        }
 
-    ctx.drawImage(video, 0, 0);
+        function capturePhoto() {
+            const video = document.getElementById('video');
+            const canvas = document.getElementById('canvas');
+            const ctx = canvas.getContext('2d');
 
-    canvas.toBlob(blob => {
-        const file = new File([blob], 'camera-photo.png', { type: 'image/png' });
-        const dataTransfer = new DataTransfer();
-        dataTransfer.items.add(file);
+            canvas.width = video.videoWidth;
+            canvas.height = video.videoHeight;
 
-        document.getElementById('photoInput').files = dataTransfer.files;
-        previewPhoto(document.getElementById('photoInput'));
-        closeCamera();
-    });
-}
-</script>
+            ctx.drawImage(video, 0, 0);
+
+            canvas.toBlob(blob => {
+                const file = new File([blob], 'camera-photo.png', {
+                    type: 'image/png'
+                });
+                const dataTransfer = new DataTransfer();
+                dataTransfer.items.add(file);
+
+                document.getElementById('photoInput').files = dataTransfer.files;
+                previewPhoto(document.getElementById('photoInput'));
+                closeCamera();
+            });
+        }
+    </script>
 
 
     <script>

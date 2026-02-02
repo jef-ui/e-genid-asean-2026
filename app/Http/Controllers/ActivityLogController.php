@@ -7,7 +7,7 @@ use App\Models\ActivityLog;
 
 class ActivityLogController extends Controller
 {
-        public function store(Request $request)
+    public function store(Request $request)
     {
         $request->validate([
             'log_date' => 'required|date',
@@ -21,7 +21,7 @@ class ActivityLogController extends Controller
 
         if ($request->hasFile('attachment')) {
             $filePath = $request->file('attachment')
-                                ->store('activity_logs', 'public');
+                ->store('activity_logs', 'public');
         }
 
         ActivityLog::create([
@@ -37,16 +37,12 @@ class ActivityLogController extends Controller
             ->with('success', 'Activity log added successfully.');
     }
 
-public function print()
-{
-    $logs = ActivityLog::orderBy('log_date', 'asc')
-        ->orderBy('log_time', 'asc')
-        ->get();
+    public function print()
+    {
+        $logs = ActivityLog::orderBy('log_date', 'asc')
+            ->orderBy('log_time', 'asc')
+            ->get();
 
-    return view('aseanims.activitylogprint', compact('logs'));
-}
-
-
-
-
+        return view('aseanims.activitylogprint', compact('logs'));
+    }
 }
