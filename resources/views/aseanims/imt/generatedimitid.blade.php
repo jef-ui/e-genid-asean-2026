@@ -1,27 +1,29 @@
     <!DOCTYPE html>
     <html lang="en">
+
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>e-ID Enrollment</title>
-        <link rel="stylesheet" href="{{asset ('css/dashboard.css')}}">
+        <link rel="stylesheet" href="{{ asset('css/dashboard.css') }}">
     </head>
+
     <body>
-        @if(session('success'))
-<div id="successModal" class="custom-modal">
-    <div class="custom-modal-content">
-        <h3>Success</h3>
-        <p>{{ session('success') }}</p>
-        <button onclick="document.getElementById('successModal').style.display='none'">
-            OK
-        </button>
-    </div>
-</div>
-@endif
+        @if (session('success'))
+            <div id="successModal" class="custom-modal">
+                <div class="custom-modal-content">
+                    <h3>Success</h3>
+                    <p>{{ session('success') }}</p>
+                    <button onclick="document.getElementById('successModal').style.display='none'">
+                        OK
+                    </button>
+                </div>
+            </div>
+        @endif
 
         <div class="dashboard">
             <div class="header">
-                <img src="{{asset ('images/stgepr-2.png')}}" alt="logo" class="logo">
+                <img src="{{ asset('images/stgepr-2.png') }}" alt="logo" class="logo">
                 <div class="title">
                     <p>SITE TASK GROUP EMERGENCY PREPAREDNESS RESPONSE</p>
                 </div>
@@ -30,126 +32,136 @@
             <div class="container-title">
                 <p class="ptitle">ENROLLED RIMT E-IDs</p>
                 <div class="phtime">
-                    <img src="{{asset ('images/phflag.png')}}" alt="flag" class="phflag">
+                    <img src="{{ asset('images/phflag.png') }}" alt="flag" class="phflag">
                     <span id="phDate"></span>
                 </div>
             </div>
-        <div class="enroll-id-dashboard">
-        <a href="/asean-2026/dashboard/enrolled-imt-e-ids/e-id-enrollment-form"><button class="createButton">Enroll RIMT e-ID</button></a>
-        <a href="/asean-2026/dashboard"><button class="createButton"  style="background-color: #CE1126">Dashboard</button></a>
-        </div>
-        <div class="main-container">
-        <div class="main">
-            <div class="table-wrapper">
-            <table class="dbtable">
-            <thead>
-                <tr>
-                <th>PHOTO</th>
-                <th>CTRL NUMBER</th>
-                <th>TASK GROUP</th>
-                <th>NAME</th>
-                <th>POSITION</th>
-                {{-- <th>DESIGNATION</th> --}}
-                <th>OFFICE/AGENCY</th>
-                <th>CONTACT NUMBER</th>
-                </tr>
-            </thead>
-    <tbody>
-    @foreach($records as $r)
-    <tr>
-        <td style="text-align:center;">
-    @if($r->photo_path)
-        <img src="{{ asset('storage/' . $r->photo_path) }}"
-             style="
+            <div class="enroll-id-dashboard">
+                <a href="/asean-2026/dashboard/enrolled-imt-e-ids/e-id-enrollment-form"><button
+                        class="createButton">Enroll RIMT e-ID</button></a>
+                <a href="/asean-2026/dashboard"><button class="createButton"
+                        style="background-color: #CE1126">Dashboard</button></a>
+            </div>
+            <div class="main-container">
+                <div class="main">
+                    <div class="table-wrapper">
+                        <table class="dbtable">
+                            <thead>
+                                <tr>
+                                    <th>PHOTO</th>
+                                    <th>CTRL NUMBER</th>
+                                    <th>TASK GROUP</th>
+                                    <th>NAME</th>
+                                    <th>POSITION</th>
+                                    {{-- <th>DESIGNATION</th> --}}
+                                    <th>OFFICE/AGENCY</th>
+                                    <th>CONTACT NUMBER</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach ($records as $r)
+                                    <tr>
+                                        <td style="text-align:center;">
+                                            @if ($r->photo_path)
+                                                <img src="{{ asset('storage/' . $r->photo_path) }}"
+                                                    style="
                 width:40px;
                 height:40px;
                 border-radius:50%;
                 object-fit:cover;
                 border:1px solid #ccc;
              ">
-    @else
-        <span style="font-size:10px; color:#999;">N/A</span>
-    @endif
-</td>
+                                            @else
+                                                <span style="font-size:10px; color:#999;">N/A</span>
+                                            @endif
+                                        </td>
 
-        <td>{{ $r->ctrl_number }}</td>
-        <td>IMT</td>
-        <td>{{ $r->full_name }}</td>
-        <td>{{ $r->imt_position }}</td>
-        {{-- <td>{{ $r->office_designation }}</td> --}}
-        <td>{{ $r->office_agency }}</td>
-        <td>{{ $r->contact_number }}</td>
+                                        <td>{{ $r->ctrl_number }}</td>
+                                        <td>IMT</td>
+                                        <td>{{ $r->full_name }}</td>
+                                        <td>{{ $r->imt_position }}</td>
+                                        {{-- <td>{{ $r->office_designation }}</td> --}}
+                                        <td>{{ $r->office_agency }}</td>
+                                        <td>{{ $r->contact_number }}</td>
 
-        <td><a href="{{ route('imt.show', $r->id) }}"><img src="{{asset ('icons/eye-fill.svg')}}" alt="icon" class="td-icon"></a></td>
+                                        <td><a href="{{ route('imt.show', $r->id) }}"><img
+                                                    src="{{ asset('icons/eye-fill.svg') }}" alt="icon"
+                                                    class="td-icon"></a></td>
 
-        <td><button class="icon-btn" onclick="downloadId({{ $r->id }})"><img src="{{ asset('icons/tray-arrow-down-fill.svg') }}" alt="icon" class="td-icon"></button></td>
+                                        <td><button class="icon-btn" onclick="downloadId({{ $r->id }})"><img
+                                                    src="{{ asset('icons/tray-arrow-down-fill.svg') }}" alt="icon"
+                                                    class="td-icon"></button></td>
 
-        <td>
-    <a href="{{ route('imt.edit', $r->id) }}">
-        <img src="{{ asset('icons/pencil-fill.svg') }}"
-             class="td-icon">
-    </a>
-</td>
+                                        <td>
+                                            <a href="{{ route('imt.edit', $r->id) }}">
+                                                <img src="{{ asset('icons/pencil-fill.svg') }}" class="td-icon">
+                                            </a>
+                                        </td>
 
 
-        <td><form action="{{ route('imt.delete', $r->id) }}" method="POST" onsubmit="return confirm('Are you sure you want to delete this record?');"> @csrf @method('DELETE')<button class="icon-btn" type="submit"><img src="{{asset ('icons/trash-fill.svg')}}" alt="td-icon"></button>
-        </form></td>
+                                        <td>
+                                            <form action="{{ route('imt.delete', $r->id) }}" method="POST"
+                                                onsubmit="return confirm('Are you sure you want to delete this record?');">
+                                                @csrf @method('DELETE')<button class="icon-btn" type="submit"><img
+                                                        src="{{ asset('icons/trash-fill.svg') }}"
+                                                        alt="td-icon"></button>
+                                            </form>
+                                        </td>
 
-    </tr>
-    @endforeach
-    </tbody>
-            </table>
+                                    </tr>
+                                @endforeach
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
             </div>
-        </div>
-        </div>
 
-                {{-- <button onclick="window.open('{{ route('imt.certificates.pdf') }}')" 
+            {{-- <button onclick="window.open('{{ route('imt.certificates.pdf') }}')" 
         class="createButton"
         style="background:#0a7cff;">
     Download Certificates (PDF)
 </button>   --}}
 
 
-        <button onclick="window.open('{{ route('imt.print') }}', '_blank')"
-        class="createButton"
-        style="background:#0a7cff;">
-    Print IMT Masterlist
-</button>
+            <button onclick="window.open('{{ route('imt.print') }}', '_blank')" class="createButton"
+                style="background:#0a7cff;">
+                Print IMT Masterlist
+            </button>
 
         </div>
-    <script src="{{asset ('js/livedate.js')}}"></script>
-    <div id="hidden-id-container"
-     style="position:absolute; left:-9999px; top:-9999px;"></div>
-     <script src="https://cdn.jsdelivr.net/npm/html2canvas@1.4.1/dist/html2canvas.min.js"></script>
-<script>
-function downloadId(id) {
+        <script src="{{ asset('js/livedate.js') }}"></script>
+        <div id="hidden-id-container" style="position:absolute; left:-9999px; top:-9999px;"></div>
+        <script src="https://cdn.jsdelivr.net/npm/html2canvas@1.4.1/dist/html2canvas.min.js"></script>
+        <script>
+            function downloadId(id) {
 
-    fetch(`/imt/e-id/view/${id}?render=1`)
-        .then(response => response.text())
-        .then(html => {
+                fetch(`/imt/e-id/view/${id}?render=1`)
+                    .then(response => response.text())
+                    .then(html => {
 
-            const container = document.getElementById('hidden-id-container');
-            container.innerHTML = html;
+                        const container = document.getElementById('hidden-id-container');
+                        container.innerHTML = html;
 
-            const card = container.querySelector('.id-card');
+                        const card = container.querySelector('.id-card');
 
-            html2canvas(card, {
-                scale: 2,
-                useCORS: true,
-                backgroundColor: null
-            }).then(canvas => {
+                        html2canvas(card, {
+                            scale: 2,
+                            useCORS: true,
+                            backgroundColor: null
+                        }).then(canvas => {
 
-                const link = document.createElement('a');
-                link.download = `IMT_${id}.png`;
-                link.href = canvas.toDataURL('image/png');
-                link.click();
+                            const link = document.createElement('a');
+                            link.download = `IMT_${id}.png`;
+                            link.href = canvas.toDataURL('image/png');
+                            link.click();
 
-                // cleanup
-                container.innerHTML = '';
-            });
-        });
-}
-</script>
+                            // cleanup
+                            container.innerHTML = '';
+                        });
+                    });
+            }
+        </script>
 
     </body>
+
     </html>
